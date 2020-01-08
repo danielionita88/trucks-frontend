@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import {login} from '../actions/index'
 
 
 
@@ -19,7 +20,7 @@ class Login extends React.Component{
 
     handleLogin= e=>{
         e.preventDefault()
-      
+        this.props.login(this.state)
     }
 
     
@@ -41,7 +42,7 @@ class Login extends React.Component{
                     <Form.Input fluid icon='lock'
                         iconPosition='left'
                         name={'password'}
-                        type='password  '
+                        type='password'
                         onChange={this.handleChange} 
                         value={this.state.password} 
                         placeholder='password'
@@ -56,7 +57,7 @@ class Login extends React.Component{
 
 const mapDispatchToProps=dispatch=>{
     return{
-        
+        login: body=>dispatch(login(body))
     }
 }
 
