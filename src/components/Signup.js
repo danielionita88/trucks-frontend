@@ -1,4 +1,6 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {signup} from '../actions/index'
 
 
 class Signup extends React.Component{
@@ -19,14 +21,7 @@ class Signup extends React.Component{
 
     handleSubmit=e=>{
         e.preventDefault()
-        // const reqObj={
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        //     body: JSON.stringify(this.state)
-        // }
+        this.props.signup(this.state) 
     }
 
     render(){
@@ -51,5 +46,10 @@ class Signup extends React.Component{
     }
 }
 
+const mapDispatchToProps = dispatch=>{
+    return{
+        signup: (body)=>dispatch(signup(body))
+    }
+}
 
-export default Signup
+export default connect(null, mapDispatchToProps)(Signup)

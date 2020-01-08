@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
 
 
 class Login extends React.Component{
-
 
     state={
         username: '',
@@ -19,21 +19,14 @@ class Login extends React.Component{
 
     handleLogin= e=>{
         e.preventDefault()
-        const reqObj={
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(this.state)
-        }
+      
     }
 
     
     render(){
         return <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
              <Grid.Column style={{ maxWidth: 450 }}>
-                <Header as='h2' color='teal' textAlign='center'>
+                <Header as='h2' color='blue' textAlign='center'>
                     <Image src='https://logopond.com/logos/e60a215d0cd51962610549d3ae45bb34.png' /> Log-in to your account
                 </Header>
             <Form onSubmit={this.handleLogin}>
@@ -47,12 +40,13 @@ class Login extends React.Component{
                     />
                     <Form.Input fluid icon='lock'
                         iconPosition='left'
-                        name={'password'} 
-                        onChange={this.handleInputChange} 
+                        name={'password'}
+                        type='password  '
+                        onChange={this.handleChange} 
                         value={this.state.password} 
                         placeholder='password'
                     />
-                    <Button color='teal' fluid size='large'>Login</Button>
+                    <Button color='blue' fluid size='large'>Login</Button>
                 </Segment>
             </Form>
             </Grid.Column>
@@ -60,5 +54,10 @@ class Login extends React.Component{
     }
 }
 
+const mapDispatchToProps=dispatch=>{
+    return{
+        
+    }
+}
 
-export default Login
+export default connect(null, mapDispatchToProps)(Login)
