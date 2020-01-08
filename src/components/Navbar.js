@@ -1,16 +1,24 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { Menu} from 'semantic-ui-react'
+
 
 class Navbar extends React.Component{
-    render(){console.log(this.props)
-        return <div>
-            <Link to='/used-trucks'>UsedTrucks</Link>
-            <Link to='/new-post'>Sell Truck</Link>
-        
-            <div><Link to='/login'>Login</Link> / <Link to='/signup'>Signup</Link></div>
-            
-        </div>
+    render(){
+        return <Menu>
+            <Menu.Item>
+                <Link to='/used-trucks'>UsedTrucks</Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to='/new-post'>Sell Truck</Link>
+            </Menu.Item>
+            <Menu.Item>
+               { !this.props.user.id ? <div><Link to='/login'>Login</Link> / <Link to='/signup'>Signup</Link></div>
+               :
+               ""}
+            </Menu.Item>
+        </Menu>
     }
 }
 

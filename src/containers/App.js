@@ -6,6 +6,7 @@ import Login from '../components/Login'
 import history from '../history'
 import CreatePost from '../components/CreatePost'
 import HomePage from '../components/HomePage'
+import '../App.css'
 
 class App extends React.Component {
   
