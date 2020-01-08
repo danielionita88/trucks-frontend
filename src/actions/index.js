@@ -5,7 +5,7 @@ const currentUser = (user)=>{
 }
 
 
-export const signup=(body)=>{
+export const signup=(body)=>{console.log(body)
     return (dispatch) =>{
         const reqObj={
             method: 'POST',
