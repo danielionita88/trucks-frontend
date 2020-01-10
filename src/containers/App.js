@@ -9,8 +9,14 @@ import CreatePost from '../components/CreatePost'
 import HomePage from '../components/HomePage'
 import TruckList from '../components/TruckList'
 import UsersProfile from './UsersProfile'
+import {connect} from 'react-redux'
+import {getAllPosts} from '../actions/index'
 
 class App extends React.Component {
+
+  componentDidMount(){
+    this.props.getAllPosts()
+  }
   
   
   render(){
@@ -27,4 +33,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps=dispatch=>{
+  return{
+    getAllPosts: ()=>dispatch(getAllPosts())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);

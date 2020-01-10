@@ -9,8 +9,8 @@ import Navbar from './Navbar'
 class Login extends React.Component{
 
     state={
-        username: '',
-        password: ''
+        username: 'daniel',
+        password: '1234'
     }
 
     handleChange=e=>{

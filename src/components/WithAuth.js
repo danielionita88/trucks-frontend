@@ -18,7 +18,7 @@ export default function WithAuth(Component){
         }  
         
         render(){
-            return <Component/>
+            return <Component {...this.props}/>
         }
     }
     

@@ -22,6 +22,9 @@ class Navbar extends React.Component{
             <Menu.Item>
                 <Link to='/new-post'>Sell Truck</Link>
             </Menu.Item>
+            <Menu.Item>
+                {this.props.user.id ? <Link to='/profile'>Profile</Link> : ""}
+            </Menu.Item>
             <Menu.Item position='right'>
                { !this.props.user.id ? <div><Link to='/login'>Login</Link> / <Link to='/signup'>Signup</Link></div>
                :
