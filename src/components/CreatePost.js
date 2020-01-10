@@ -1,11 +1,15 @@
 import React from 'react'
 import WithAuth from './WithAuth'
 import Navbar from './Navbar'
-import { Form } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 
 
 
 class CreatePost extends React.Component{
+    constructor(props){
+        super(props)
+        this.fileInputRef=React.createRef()
+    }
 
     state={
         title:'',
@@ -42,7 +46,8 @@ class CreatePost extends React.Component{
             </div>
             <h3>Upload Pictures</h3>
             <Form>
-                <Form.Input fluid placeholder='Make' value={this.state.make}/>  
+                <Button onClick={()=>this.fileInputRef.current.click()}>Choose File</Button>
+                <input type='file' hidden ref={this.fileInputRef}/>
                 <Form.Input fluid placeholder='Make' value={this.state.make}/>
                 <Form.Input fluid placeholder='Make' value={this.state.make}/>                
                 <Form.Input fluid placeholder='Make' value={this.state.make}/>                

@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 
+
 class HomePage extends React.Component{
     render(){
         return <div>

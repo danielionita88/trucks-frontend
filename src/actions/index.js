@@ -4,6 +4,10 @@ const currentUser = (user)=>{
     return{type: 'LOGIN', user}
 }
 
+export const signout=()=>{
+    return{type: 'SIGNOUT'}
+}
+
 
 export const signup=(body)=>{console.log(body)
     return (dispatch) =>{
@@ -69,7 +73,7 @@ export const checkUser=token=>{
 
         fetch('http://localhost:3000/api/v1/current_user', reqObj)
         .then(resp => resp.json())
-        .then(data=>{console.log(data)
+        .then(data=>{
             if(data.error)
             { history.push('/login')}
         else {
