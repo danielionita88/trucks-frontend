@@ -15,6 +15,21 @@ const setAllPosts=posts=>{
 const setLikedPosts=posts=>{
     return{type: 'SET_LIKED_POSTS', posts}
 }
+export const createPost= formData=>{console.log(formData)
+    return (dispatch)=>{
+        const reqObj={
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }
+        fetch('http://localhost:3000/api/v1/posts', reqObj)
+        .then(resp => resp.json())
+        .then(data=> console.log(data))
+    }
+}
 
 export const signup=(body)=>{
     return (dispatch) =>{
@@ -95,6 +110,10 @@ export const checkUser=token=>{
             { history.push('/login')}
         else {
             dispatch(currentUser(data))
+            localStorage.setItem('token', data.token)
+            fetch(`http://localhost:3000/api/v1/users/${data.id}/liked_posts`)
+            .then(resp => resp.json())
+            .then(posts => dispatch(setLikedPosts(posts)))
         }})
     }
 }

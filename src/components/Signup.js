@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {signup} from '../actions/index'
+import { Button, Form } from 'semantic-ui-react'
+import Navbar from './Navbar'
 
 
 class Signup extends React.Component{
@@ -26,22 +28,32 @@ class Signup extends React.Component{
 
     render(){
         return <div >
-            <form onSubmit={this.handleSubmit}>
-                <span>Username</span>
-                <input onChange={this.handleChange}type='text' name='username' value={this.state.username}/>
-                <br/>
-                <span>Password</span>
-                <input onChange={this.handleChange} type='password' name='password' value={this.state.password}/>
-                <br/>
-                <span>Confirm Password</span>
-                <input onChange={this.handleChange} type='password' name='password_confirmation' value={this.state.password_confirmation}/>
-                <br/>
-                <span> Email</span>
-                <input onChange={this.handleChange} type='text' name='email' value={this.state.email}/>
-                <br/>
-                <input type='submit'/>
-            </form>
-
+            <Navbar/>
+            <div className='signup'>
+                <h3>Create User</h3>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Field>
+                        <label>Username</label>
+                        <input onChange={this.handleChange}type='text' name='username' value={this.state.username}/>
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Password</label>
+                        <input onChange={this.handleChange} type='password' name='password' value={this.state.password}/>
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Confirm Password</label>
+                        <input onChange={this.handleChange} type='password' name='password_confirmation' value={this.state.password_confirmation}/>
+                    </Form.Field>
+                    <Form.Field>
+                        <label> Email</label>
+                        <input onChange={this.handleChange} type='text' name='email' value={this.state.email}/>
+                    </Form.Field>
+                    <Button type='submit'>Submit</Button>
+                </Form>
+            </div>
+            <div id='sign-up-img'>
+                <img src={'https://bfmultimedia.com/wp-content/uploads/2016/10/peterbilt-01-1024x617.jpg'} alt="truck"/>
+            </div>
         </div>
     }
 }

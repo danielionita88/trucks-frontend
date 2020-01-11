@@ -1,3 +1,26 @@
 .new-post{
     width: 600px;
 }
+
+.truck-card {
+    width: 1000px;
+    position: relative;
+    left: 100px
+
+}
+
+.signup{
+    z-index: 2;
+    width: 400px;
+    position: relative;
+    left: 100px;
+    top: 100px;
+}
+
+#sign-up-img{
+    width: 900px;
+    position: relative;
+    left: 300px;
+    bottom: 350px;
+    z-index: 1;
+}

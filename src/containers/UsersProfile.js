@@ -4,6 +4,7 @@ import UsersLikedPosts from '../components/UsersLikedPosts'
 import WithAuth from '../components/WithAuth'
 import Navbar from '../components/Navbar'
 import {Grid} from 'semantic-ui-react'
+import {connect} from 'react-redux'
 
 
 
@@ -14,7 +15,7 @@ class UsersProfile extends React.Component{
         return <div>
             <Navbar/>
             <Grid>
-            <h2>Hello User</h2>
+            <h2>Hello {this.props.user.username}</h2>
             <Grid.Column floated='left' width={5}>
                 <UsersPostsList/>
             </Grid.Column>
@@ -26,4 +27,10 @@ class UsersProfile extends React.Component{
     }
 }
 
-export default WithAuth(UsersProfile)
+const mapStateToProps=state=>{
+    return{
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(WithAuth(UsersProfile))
