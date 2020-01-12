@@ -11,6 +11,7 @@ import TruckList from '../components/TruckList'
 import UsersProfile from './UsersProfile'
 import {connect} from 'react-redux'
 import {getAllPosts} from '../actions/index'
+import ShowTruck from '../components/ShowTruck'
 
 class App extends React.Component {
 
@@ -18,20 +19,21 @@ class App extends React.Component {
     this.props.getAllPosts()
   }
   
-  
   render(){
     return (
       <Router history={history}>
         <Route exact path='/signup' component={Signup}/>
         <Route exact path='/login' component={Login}/>
         <Route exact path='/new-post' component={CreatePost}/>
-        <Route exact path='/home' component={HomePage}/>
+        <Route exact path='/' component={HomePage}/>
         <Route exact path='/used-trucks' component={TruckList}/>
+        <Route exact path='/used-trucks/:postId' component={ShowTruck}/>
         <Route exact path='/profile' component={UsersProfile}/>
       </Router>
     );
   }
 }
+
 
 const mapDispatchToProps=dispatch=>{
   return{

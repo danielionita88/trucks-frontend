@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 class UsersPostsList extends React.Component{
 
     render(){
-        const posts= this.props.posts.filter(post => post.id === this.props.user.id)
+        const posts= this.props.posts.filter(post => post.user_id === this.props.user.id)
         return <div>
             <h1>Users Posts List</h1>
             {posts.map(post => <li key={post.id}>{post.title}</li>)}

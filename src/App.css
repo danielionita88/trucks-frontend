@@ -5,7 +5,8 @@
 .truck-card {
     width: 1000px;
     position: relative;
-    left: 100px
+    left: 100px;
+    top: 70px;
 
 }
 
@@ -23,4 +24,16 @@
     left: 300px;
     bottom: 350px;
     z-index: 1;
+}
+
+.post-container{
+    position: relative;
+    top: 100px;
+    left:100px;
+}
+
+#description{
+    position: relative;
+    top: 150px;
+    left: 100px;
 }

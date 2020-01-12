@@ -1,12 +1,14 @@
 import React from 'react'
 import Navbar from './Navbar'
-import { Input,Menu, Grid, Image, Radio} from 'semantic-ui-react'
+import { Input, Grid, Image, Radio} from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import {setPost} from '../actions/index'
 
 
 class TruckList extends React.Component{
 
     state={
+        sortByPrice: false,
         searchTerm: ''
     }
 
@@ -16,12 +18,17 @@ class TruckList extends React.Component{
         })
     }
 
+    handlePostClick=post=>{
+        this.props.setPost(post)
+        this.props.history.push(`/used-trucks/${post.id}`)
+    }
+
     renderImages=(post)=>{
         return post.photos_urls.map(url => <img src={`http://localhost:3000/${url}` } alt='truck'/>)
     }
 
     renderTrucks=(posts)=>{
-       return posts.map(post=> <div key={post.id}className='truck-card'>
+       return posts.map(post=> <div onClick={()=>this.handlePostClick(post)} key={post.id}className='truck-card'>
                 <Grid celled>
                 <Grid.Row>
                 <Grid.Column width={3}>
@@ -39,18 +46,30 @@ class TruckList extends React.Component{
        )
     }
 
+    handleSort= ()=>{
+        this.setState({
+            sortByPrice: !this.state.sortByPrice
+        })
+    }
+
+    sortPosts=posts=>{
+        posts.sort((a,b)=> (a.price > b.price)? 1: -1)
+    }
+ 
+
     render(){
-        const term=this.state.searchTerm.toLowerCase()
-        const filterPosts= this.props.posts.filter(post=> post.make.toLowerCase().includes(term))
-        const posts = this.state.searchTerm ? filterPosts : this.props.posts
+        let term =this.state.searchTerm.toLowerCase()
+        let searchedPosts = this.state.searchTerm ? 
+            this.props.posts.filter(post=> post.make.toLowerCase().includes(term)|| post.model.toLowerCase().includes(term))
+            :
+            this.props.posts
+        
         return<div>
             <Navbar/>
-            <Menu.Menu position='right'>
-                    <Menu.Item>
-                        <Input onChange={this.handleSearch}icon='search' placeholder='Search...' />
-                    </Menu.Item>
-            </Menu.Menu>
-            {this.renderTrucks(posts)}
+            <Input onChange={this.handleSearch}icon='search' placeholder='Search...' />
+            <Radio onClick={this.handleSort} label='Sort By Price' style={{margin:15}} checked={this.state.sortByPrice}/>
+            <br/>
+            {this.renderTrucks(this.sortByPrice? this.sortPosts(searchedPosts): searchedPosts)}
         </div>
     }
 }
@@ -61,4 +80,10 @@ const mapStateToProps=state=>{
     }
 }
 
-export default connect(mapStateToProps)(TruckList)
+const mapDispatchToProps=dispatch=>{
+    return{
+        setPost: postId=>dispatch(setPost(postId))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TruckList)

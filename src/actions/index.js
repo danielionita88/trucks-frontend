@@ -15,6 +15,13 @@ const setAllPosts=posts=>{
 const setLikedPosts=posts=>{
     return{type: 'SET_LIKED_POSTS', posts}
 }
+
+export const setPost=post=>{console.log(post)
+    return (dispatch)=>{
+        dispatch({type: 'SET_POST',post})
+        // localStorage.setItem('postId', post.id)
+    }
+}
 export const createPost= formData=>{console.log(formData)
     return (dispatch)=>{
         const reqObj={
@@ -50,7 +57,7 @@ export const signup=(body)=>{
             else{
                 dispatch(currentUser(data ))
                 localStorage.setItem('token', data.token)
-                history.push('/home')
+                history.push('/')
             }
         })
     }
@@ -86,7 +93,7 @@ export const login=body=>{
                 fetch(`http://localhost:3000/api/v1/users/${data.id}/liked_posts`)
                 .then(resp => resp.json())
                 .then(posts => dispatch(setLikedPosts(posts)))
-                history.push('/home')
+                history.push('/')
             }
         })
     }
