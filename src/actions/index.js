@@ -16,27 +16,62 @@ const setLikedPosts=posts=>{
     return{type: 'SET_LIKED_POSTS', posts}
 }
 
-export const setPost=post=>{console.log(post)
+const addPost=post=>{
+    return{type: 'ADD_POST', post}
+}
+
+const removePost=id=>{
+    return{type: 'REMOVE_POST',id}
+}
+
+export const setPost=post=>{
     return (dispatch)=>{
         dispatch({type: 'SET_POST',post})
-        // localStorage.setItem('postId', post.id)
+        
     }
 }
-export const createPost= formData=>{console.log(formData)
+
+export const deletePost=id=>{
+    return(dispatch)=>{
+        fetch(`http://localhost:3000/api/v1/posts/${id}`, {method: 'DELETE'})
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            dispatch(removePost(id))
+            }
+        )
+    }
+}
+export const createPost= data=>{console.log(data)
+
+    let formData= new FormData()
+    formData.append('title', data.title)
+    formData.append('make', data.make)
+    formData.append('model', data.model)
+    formData.append('model_year', data.model_year)
+    formData.append('price', data.price)
+    formData.append('odometer', data.odometer)
+    formData.append('title_status', data.title_status)
+    formData.append('city', data.city)
+    formData.append('description', data.description)
+    formData.append('user_id', data.user_id)
+    for(let i=0; i< data.photos.length; i++){
+        formData.append(`photos[]`, data.photos[i])
+    }
+ 
     return (dispatch)=>{
 
     
         const reqObj={
             method: 'POST',
-            // headers: {
-            //     'Content-Type': 'application/json',
-            //     'Accept': 'application/json'
-            // },
             body: formData
         }
         fetch('http://localhost:3000/api/v1/posts', reqObj)
         .then(resp => resp.json())
-        .then(data=> console.log(data))
+        .then(data=> {
+            dispatch(addPost(data))
+            history.push(`/profile`)
+        })
     }
 }
 

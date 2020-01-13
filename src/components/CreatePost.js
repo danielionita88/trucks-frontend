@@ -24,18 +24,18 @@ class CreatePost extends React.Component{
         photos:[]
     }
 
-    handleFileChange=e=>{
+    handleFileChange=e=>{ 
         this.setState({
-            photos: e.target.files[0]
+            photos:e.target.files
         })
     }
 
     handleSubmit=e=>{
         e.preventDefault()
-        const formData={...this.state,
+        let data={...this.state,
             user_id: this.props.user.id
         }
-        this.props.createPost(formData)
+        this.props.createPost(data)
     }
     
     handleChange=e=>{
@@ -45,6 +45,7 @@ class CreatePost extends React.Component{
     }
 
     render(){console.log(this.state)
+
         return <div>
             <Navbar/>
             <h1>Create post</h1>
@@ -64,7 +65,7 @@ class CreatePost extends React.Component{
                     </Form.Group>
                     <Form.Field control='textarea'onChange={this.handleChange} name='description'rows='4'/>
                     <h3>Upload Pictures</h3>
-                    <input type='file' onChange={this.handleFileChange}/>
+                    <input type='file' multiple onChange={this.handleFileChange}/>
                     <br/>
                     <br/>
                     <Button type='submit'>Submit</Button>

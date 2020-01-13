@@ -10,6 +10,13 @@ const posts = (state={allPosts: [],likedPosts: [], selectedPost:''}, action)=>{
             return {...state,
                 selectedPost: action.post
             }
+        case 'ADD_POST':
+            return {...state,
+            allPosts: [...state.allPosts, action.post]}
+        case 'REMOVE_POST':
+            const newPosts= state.allPosts.filter(post => post.id !== action.id)
+            return {...state,
+            allPosts: newPosts }
         default: 
             return state
     }

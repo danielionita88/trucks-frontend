@@ -8,7 +8,7 @@ import MapContainer from './MapContainer'
  
 class ShowTruck extends React.Component{
 
-    render(){console.log(this.props)
+    render(){
         const post=this.props.selectedPost
         
         return <div>
@@ -46,6 +46,6 @@ const mapStateToProps=state=>{
     return{
       selectedPost: state.posts.selectedPost
     }
-  }
+}
 
 export default connect(mapStateToProps)(ShowTruck)

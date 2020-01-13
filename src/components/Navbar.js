@@ -11,7 +11,7 @@ class Navbar extends React.Component{
     handleClick=()=>{
         this.props.signout()
         localStorage.clear()
-        history.push('/home')
+        history.push('/')
     }
 
     render(){
