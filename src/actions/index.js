@@ -24,13 +24,15 @@ export const setPost=post=>{console.log(post)
 }
 export const createPost= formData=>{console.log(formData)
     return (dispatch)=>{
+
+    
         const reqObj={
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(formData)
+            // headers: {
+            //     'Content-Type': 'application/json',
+            //     'Accept': 'application/json'
+            // },
+            body: formData
         }
         fetch('http://localhost:3000/api/v1/posts', reqObj)
         .then(resp => resp.json())

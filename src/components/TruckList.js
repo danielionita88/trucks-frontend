@@ -53,7 +53,8 @@ class TruckList extends React.Component{
     }
 
     sortPosts=posts=>{
-        posts.sort((a,b)=> (a.price > b.price)? 1: -1)
+        let newArr = posts.slice()
+       return newArr.sort((a,b)=> (a.price > b.price)? 1: -1)
     }
  
 
@@ -63,13 +64,14 @@ class TruckList extends React.Component{
             this.props.posts.filter(post=> post.make.toLowerCase().includes(term)|| post.model.toLowerCase().includes(term))
             :
             this.props.posts
-        
+        let sortedPosts = this.sortPosts(searchedPosts)
         return<div>
             <Navbar/>
             <Input onChange={this.handleSearch}icon='search' placeholder='Search...' />
             <Radio onClick={this.handleSort} label='Sort By Price' style={{margin:15}} checked={this.state.sortByPrice}/>
             <br/>
-            {this.renderTrucks(this.sortByPrice? this.sortPosts(searchedPosts): searchedPosts)}
+            {this.state.sortByPrice ? this.renderTrucks(sortedPosts) : this.renderTrucks(searchedPosts)}
+        
         </div>
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import Geocode from 'react-geocode'
 
 const mapStyles = {
     
@@ -33,6 +34,19 @@ export class MapContainer extends React.Component{
     }
   }; 
 
+  componentDidMount(){
+    //   Geocode.setApiKey(key)
+    // Geocode.fromAddress("Eiffel Tower").then(
+    //     response => {
+    //       const { lat, lng } = response.results[0].geometry.location;
+    //       console.log(lat, lng);
+    //     },
+    //     error => {
+    //       console.error(error);
+    //     }
+    //   );
+  }
+
     render(){
         return <div>
             <Map
@@ -40,8 +54,8 @@ export class MapContainer extends React.Component{
                 zoom={14}
                 style={mapStyles}
                 initialCenter={{
-                lat: -1.2884,
-                lng: 36.8233
+                lat: 48.85837009999999,
+                lng: 2.2944813
                 }}
             >
             <Marker
@@ -61,5 +75,5 @@ export class MapContainer extends React.Component{
         </div>
     }
 }
-
-export default GoogleApiWrapper({apiKey:"AIzaSyBtVhW1tRL7mWqhJb35r3fsIWGGTm7MaUU"})(MapContainer)
+// const key = "AIzaSyA1G_lMqsIwRD5qMLZ614Bd9v8rUDTuMQM"
+export default GoogleApiWrapper({apiKey:"key"})(MapContainer)
