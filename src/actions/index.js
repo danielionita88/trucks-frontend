@@ -52,16 +52,16 @@ export const createPost= data=>{console.log(data)
     formData.append('price', data.price)
     formData.append('odometer', data.odometer)
     formData.append('title_status', data.title_status)
-    formData.append('city', data.city)
     formData.append('description', data.description)
     formData.append('user_id', data.user_id)
+    formData.append('address', data.address)
+    formData.append('lat', data.lat)
+    formData.append('lng', data.lng)
     for(let i=0; i< data.photos.length; i++){
         formData.append(`photos[]`, data.photos[i])
     }
  
     return (dispatch)=>{
-
-    
         const reqObj={
             method: 'POST',
             body: formData

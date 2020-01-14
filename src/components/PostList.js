@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {setPost} from '../actions/index'
 
 
-class TruckList extends React.Component{
+class PostList extends React.Component{
 
     state={
         sortByPrice: false,
@@ -32,7 +32,7 @@ class TruckList extends React.Component{
                 <Grid celled>
                 <Grid.Row>
                 <Grid.Column width={3}>
-                    <Image src={`http://localhost:3000/${post.photos_urls[0]}`} />
+                    <Image src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`http://localhost:3000/${post.photos_urls[0]}` } />
                 </Grid.Column>
                 <Grid.Column width={13}>
                 <h3>{post.title}</h3>
@@ -88,4 +88,4 @@ const mapDispatchToProps=dispatch=>{
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TruckList)
+export default connect(mapStateToProps, mapDispatchToProps)(PostList)

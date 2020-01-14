@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import { Form, Button } from 'semantic-ui-react'
 import {createPost} from '../actions/index'
 import {connect} from 'react-redux'
+import Geocode from 'react-geocode'
 
 class CreatePost extends React.Component{
     constructor(props){
@@ -19,8 +20,8 @@ class CreatePost extends React.Component{
         price:'',
         odometer:'',
         title_status:'',
-        city:'',
         description:'',
+        address: '',
         photos:[]
     }
 
@@ -32,10 +33,19 @@ class CreatePost extends React.Component{
 
     handleSubmit=e=>{
         e.preventDefault()
-        let data={...this.state,
-            user_id: this.props.user.id
-        }
-        this.props.createPost(data)
+        const key = "AIzaSyBdcUzOoj5uRW41DAZvPZnhbSmfAsarkw0"
+        Geocode.setApiKey(key)
+        Geocode.fromAddress(`${this.state.address}`)
+        .then(response => {
+            const { lat, lng } = response.results[0].geometry.location
+            let data={...this.state,
+                user_id: this.props.user.id,
+                lat: lat,
+                lng: lng
+            }
+            this.props.createPost(data)
+        })
+        
     }
     
     handleChange=e=>{
@@ -60,10 +70,9 @@ class CreatePost extends React.Component{
                     </Form.Group>
                     <Form.Group widths='equal'>
                         <Form.Input fluid placeholder='Odometer' name='odometer'onChange={this.handleChange}value={this.state.odometer}/>
-                        <Form.Input fluid placeholder='Title Status'name='title_status' onChange={this.handleChange}value={this.state.title_status}/>
-                        <Form.Input fluid placeholder='City'name='city' onChange={this.handleChange}value={this.state.city}/>
+                        <Form.Input fluid placeholder='Title Status'name='title_status' onChange={this.handleChange}value={this.state.title_status}/> 
                     </Form.Group>
-                    <Form.Field control='textarea'onChange={this.handleChange} name='description'rows='4'/>
+                    <Form.Input fluid placeholder='Address "...123 street, City, State"'name='address' onChange={this.handleChange}value={this.state.address}/>
                     <h3>Upload Pictures</h3>
                     <input type='file' multiple onChange={this.handleFileChange}/>
                     <br/>
