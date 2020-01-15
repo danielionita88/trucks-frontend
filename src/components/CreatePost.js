@@ -1,7 +1,7 @@
 import React from 'react'
 import WithAuth from './WithAuth'
 import Navbar from './Navbar'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, TextArea } from 'semantic-ui-react'
 import {createPost} from '../actions/index'
 import {connect} from 'react-redux'
 import Geocode from 'react-geocode'
@@ -54,7 +54,7 @@ class CreatePost extends React.Component{
         })
     }
 
-    render(){console.log(this.state)
+    render(){
 
         return <div>
             <Navbar/>
@@ -73,6 +73,7 @@ class CreatePost extends React.Component{
                         <Form.Input fluid placeholder='Title Status'name='title_status' onChange={this.handleChange}value={this.state.title_status}/> 
                     </Form.Group>
                     <Form.Input fluid placeholder='Address "...123 street, City, State"'name='address' onChange={this.handleChange}value={this.state.address}/>
+                    <TextArea placeholder='Description' name='description' onChange={this.handleChange} value={this.state.description}/>
                     <h3>Upload Pictures</h3>
                     <input type='file' multiple onChange={this.handleFileChange}/>
                     <br/>

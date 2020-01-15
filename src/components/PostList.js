@@ -57,7 +57,6 @@ class PostList extends React.Component{
        return newArr.sort((a,b)=> (a.price > b.price)? 1: -1)
     }
  
-
     render(){
         let term =this.state.searchTerm.toLowerCase()
         let searchedPosts = this.state.searchTerm ? 
@@ -70,8 +69,9 @@ class PostList extends React.Component{
             <Input onChange={this.handleSearch}icon='search' placeholder='Search...' />
             <Radio onClick={this.handleSort} label='Sort By Price' style={{margin:15}} checked={this.state.sortByPrice}/>
             <br/>
-            {this.state.sortByPrice ? this.renderTrucks(sortedPosts) : this.renderTrucks(searchedPosts)}
-        
+            <div className='list-container'>
+                {this.state.sortByPrice ? this.renderTrucks(sortedPosts) : this.renderTrucks(searchedPosts)}
+            </div>
         </div>
     }
 }

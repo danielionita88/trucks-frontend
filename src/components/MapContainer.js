@@ -1,6 +1,7 @@
 import React from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import Geocode from 'react-geocode'
+import {connect} from 'react-redux'
+
 
 
 const mapStyles = {
@@ -11,7 +12,7 @@ const mapStyles = {
     top:150,
 }
 
-export class MapContainer extends React.Component{
+class MapContainer extends React.Component{
 
     state={
         showingInfoWindow: false,
@@ -35,7 +36,7 @@ export class MapContainer extends React.Component{
     }
   }; 
 
-    render(){console.log(this.props)
+    render(){
         return <div>
             <Map
                 google={this.props.google}
@@ -48,7 +49,7 @@ export class MapContainer extends React.Component{
             >
             <Marker
                 onClick={this.onMarkerClick}
-                name={'Kenyatta International Convention Centre'}
+                name={this.props.post.title}
             />
             <InfoWindow
                 marker={this.state.activeMarker}
@@ -62,6 +63,11 @@ export class MapContainer extends React.Component{
                 </Map>
         </div>
     }
-}
-const key = "AIzaSyBdcUzOoj5uRW41DAZvPZnhbSmfAsarkw0"
-export default GoogleApiWrapper({apiKey:key})(MapContainer)
+  }
+
+  const mapStateToProps =state=>{
+    return{
+      key: state.google
+    }
+  } 
+export default connect(mapStateToProps)(GoogleApiWrapper(props => {return{apiKey: props.googleKey}})(MapContainer))

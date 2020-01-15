@@ -23,11 +23,13 @@ const addPost=post=>{
 const removePost=id=>{
     return{type: 'REMOVE_POST',id}
 }
+const setKey=key=>{
+    return{type: 'SET_KEY', key}
+}
 
 export const setPost=post=>{
     return (dispatch)=>{
         dispatch({type: 'SET_POST',post})
-        
     }
 }
 
@@ -40,6 +42,22 @@ export const deletePost=id=>{
             dispatch(removePost(id))
             }
         )
+    }
+}
+
+export const getPost=id=>{
+    return (dispatch)=>{
+        fetch(`http://localhost:3000/api/v1/posts/${id}`)
+        .then(resp =>resp.json())
+        .then(data=>dispatch(setPost(data)))
+    }
+}
+
+export const getKey=()=>{
+    return(dispatch)=>{
+        fetch("http://localhost:3000/api/v1/google_maps")
+        .then(resp => resp.json())
+        .then(data => dispatch(setKey(data.key)))
     }
 }
 export const createPost= data=>{console.log(data)
