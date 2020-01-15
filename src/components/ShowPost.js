@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Grid, Image} from 'semantic-ui-react'
+import {Grid, Image, Button} from 'semantic-ui-react'
 import Navbar from './Navbar'
 import MapContainer from './MapContainer'
-import {getPost, getKey} from '../actions/index'
+import {getPost, getKey, likePost} from '../actions/index'
 
 
  
@@ -17,7 +17,7 @@ class ShowPost extends React.Component{
             }
         } else {
             this.state={
-                    mainPhoto: `http://localhost:3000/${this.props.selectedPost.photos_urls[0]}`
+                mainPhoto: this.props.selectedPost.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`http://localhost:3000/${this.props.selectedPost.photos_urls[0]}`
             }
         }
     }
@@ -38,20 +38,24 @@ class ShowPost extends React.Component{
     componentDidUpdate(prevProps, prevState){
         if (prevProps !== this.props){
             this.setState({
-                mainPhoto: `http://localhost:3000/${this.props.selectedPost.photos_urls[0]}`
+                mainPhoto: this.props.selectedPost.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`http://localhost:3000/${this.props.selectedPost.photos_urls[0]}`
             })
         }
     }
 
-    handleClick=index=>{
+    handleMouseOver=index=>{
         this.setState({
             mainPhoto: `http://localhost:3000/${this.props.selectedPost.photos_urls[index]}`
         })
     }
 
+    handleLike=(userId,postId)=>{
+        this.props.likePost(userId,postId)
+    }
+
     renderPictures=urls=>{
         return urls.map((url,index) => 
-            <Image onClick={()=>this.handleClick(index)} id='preview-pictures' key={index}src={`http://localhost:3000/${url}`}/>
+            <Image onMouseOver={()=>this.handleMouseOver(index)} id='preview-pictures' key={index}src={`http://localhost:3000/${url}`}/>
         )
     } 
 
@@ -65,6 +69,7 @@ class ShowPost extends React.Component{
         
         return <div>
             <Navbar/>
+            {this.props.user && !this.props.likedPosts.find(p => p.id === post.id) ? <Button onClick={()=>this.handleLike(this.props.user, post)}>Like</Button> : ''}
             <Grid className='post-container'>
                 <h2>{post.title}</h2>
                 <Grid.Row>
@@ -103,14 +108,17 @@ class ShowPost extends React.Component{
 const mapStateToProps=state=>{
     return{
       selectedPost: state.posts.selectedPost,
-      googleKey: state.googleKey
+      googleKey: state.googleKey,
+      user: state.user.id,
+      likedPosts: state.posts.likedPosts
     }
 }
 
 const mapDispatchToProps=dispatch=>{
     return{
         getPost: id=>dispatch(getPost(id)),
-        getKey: ()=>dispatch(getKey())
+        getKey: ()=>dispatch(getKey()),
+        likePost: (userId,postId) => dispatch(likePost(userId,postId))
     }
 }
 

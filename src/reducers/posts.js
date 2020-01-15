@@ -17,6 +17,13 @@ const posts = (state={allPosts: [],likedPosts: [], selectedPost:{photos_urls: []
             const newPosts= state.allPosts.filter(post => post.id !== action.id)
             return {...state,
             allPosts: newPosts }
+        case 'REMOVE_LIKE':
+            return{...state,
+            likedPosts: state.likedPosts.filter(post=> post.id !== action.postId)}
+        case 'LIKE_POST':
+            return{...state,
+                likedPosts: state.likedPosts.concat(action.post)
+            }
         default: 
             return state
     }

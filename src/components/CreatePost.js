@@ -33,18 +33,25 @@ class CreatePost extends React.Component{
 
     handleSubmit=e=>{
         e.preventDefault()
-        const key = "AIzaSyBdcUzOoj5uRW41DAZvPZnhbSmfAsarkw0"
-        Geocode.setApiKey(key)
-        Geocode.fromAddress(`${this.state.address}`)
-        .then(response => {
-            const { lat, lng } = response.results[0].geometry.location
+        if (this.state.address){
+            const key = this.props.googleKey
+            Geocode.setApiKey(key)
+            Geocode.fromAddress(`${this.state.address}`)
+            .then(response => {
+                const { lat, lng } = response.results[0].geometry.location
+                let data={...this.state,
+                    user_id: this.props.user.id,
+                    lat: lat,
+                    lng: lng
+                }
+                this.props.createPost(data)
+            })
+        }
+        else {
             let data={...this.state,
-                user_id: this.props.user.id,
-                lat: lat,
-                lng: lng
-            }
+            user_id: this.props.user.id}
             this.props.createPost(data)
-        })
+        }
         
     }
     
@@ -87,7 +94,8 @@ class CreatePost extends React.Component{
 
 const mapStateToProps=state=>{
     return{
-        user: state.user
+        user: state.user,
+        googleKey: state.googleKey
     }
 }
 const mapDispatchToProps = dispatch=>{

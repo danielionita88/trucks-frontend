@@ -26,6 +26,12 @@ const removePost=id=>{
 const setKey=key=>{
     return{type: 'SET_KEY', key}
 }
+const deleteLike=postId=>{
+    return{type:'REMOVE_LIKE', postId}
+}
+const addLike=post=>{
+    return{type: 'LIKE_POST', post}
+}
 
 export const setPost=post=>{
     return (dispatch)=>{
@@ -60,7 +66,7 @@ export const getKey=()=>{
         .then(data => dispatch(setKey(data.key)))
     }
 }
-export const createPost= data=>{console.log(data)
+export const createPost= data=>{
 
     let formData= new FormData()
     formData.append('title', data.title)
@@ -88,7 +94,7 @@ export const createPost= data=>{console.log(data)
         .then(resp => resp.json())
         .then(data=> {
             dispatch(addPost(data))
-            history.push(`/profile`)
+            history.push(`/used-trucks/${data.id}`)
         })
     }
 }
@@ -151,6 +157,33 @@ export const login=body=>{
                 history.push('/')
             }
         })
+    }
+}
+
+export const removeLike=(userId,postId)=>{
+    return (dispatch)=>{
+        fetch(`http://localhost:3000/api/v1/likes/${userId}/${postId}`, {method: 'DELETE'})
+        .then(resp => resp.json())
+        .then(data=>dispatch(deleteLike(postId)))
+    }
+}
+
+export const likePost=(userId,post) =>{
+    return (dispatch) =>{
+        const reqObj={
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                post_id: post.id
+            })
+        }
+        fetch('http://localhost:3000/api/v1/likes', reqObj)
+        .then(resp => resp.json())
+        .then(data=>dispatch(addLike(post)))
     }
 }
 

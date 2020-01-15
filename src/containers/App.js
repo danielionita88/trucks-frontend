@@ -10,7 +10,7 @@ import HomePage from '../components/HomePage'
 import PostList from '../components/PostList'
 import UsersProfile from './UsersProfile'
 import {connect} from 'react-redux'
-import {getAllPosts, getKey} from '../actions/index'
+import {getAllPosts, getKey,checkUser} from '../actions/index'
 import ShowPost from '../components/ShowPost'
 
 class App extends React.Component {
@@ -18,6 +18,10 @@ class App extends React.Component {
   componentDidMount(){
     this.props.getAllPosts()
     this.props.getKey()
+    const token = localStorage.getItem('token')
+    if (token){
+      this.props.checkUser(token)
+    }
     
   }
   
@@ -40,7 +44,8 @@ class App extends React.Component {
 const mapDispatchToProps=dispatch=>{
   return{
     getAllPosts: ()=>dispatch(getAllPosts()),
-    getKey: ()=>dispatch(getKey())
+    getKey: ()=>dispatch(getKey()),
+    checkUser: token=>dispatch(checkUser(token))
   }
 }
 

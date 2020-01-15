@@ -60,7 +60,7 @@ class PostList extends React.Component{
     render(){
         let term =this.state.searchTerm.toLowerCase()
         let searchedPosts = this.state.searchTerm ? 
-            this.props.posts.filter(post=> post.make.toLowerCase().includes(term)|| post.model.toLowerCase().includes(term))
+            this.props.posts.filter(post=> post.make.toLowerCase().includes(term)|| post.model.toLowerCase().includes(term) || post.title.toLowerCase().includes(term))
             :
             this.props.posts
         let sortedPosts = this.sortPosts(searchedPosts)

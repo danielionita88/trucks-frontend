@@ -14,7 +14,7 @@ class UsersPostsList extends React.Component{
         const posts= this.props.posts.filter(post => post.user_id === this.props.user.id)
         return <div>
             <h1>Users Posts List</h1>
-            {posts.map(post => <li key={post.id}>{post.title}<button onClick={()=>this.handleDelete(post.id)}>Delete</button></li>)}
+            {posts.map(post => <li key={post.id}>{post.title}<button onClick={()=>this.handleDelete(post.id)}>X</button></li>)}
         </div>
     }
 }
