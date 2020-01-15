@@ -1,7 +1,7 @@
 import React from 'react'
 import WithAuth from './WithAuth'
 import Navbar from './Navbar'
-import { Form, Button, TextArea } from 'semantic-ui-react'
+import { Form, Button, TextArea, Image, Grid } from 'semantic-ui-react'
 import {createPost} from '../actions/index'
 import {connect} from 'react-redux'
 import Geocode from 'react-geocode'
@@ -22,16 +22,18 @@ class CreatePost extends React.Component{
         title_status:'',
         description:'',
         address: '',
-        photos:[]
+        photos:[],
+        
     }
 
     handleFileChange=e=>{ 
         this.setState({
-            photos:e.target.files
+            photos:e.target.files,
+            
         })
     }
 
-    handleSubmit=e=>{
+    handleCreate=e=>{
         e.preventDefault()
         if (this.state.address){
             const key = this.props.googleKey
@@ -54,6 +56,14 @@ class CreatePost extends React.Component{
         }
         
     }
+
+    renderPreviewPictures=()=>{
+        return [...this.state.photos].map(p => <Grid.Column width={3}>
+            <span>x</span>
+            <img id='image-preview' src={ URL.createObjectURL(p)}/>
+            </Grid.Column>
+        )
+    }
     
     handleChange=e=>{
         this.setState({
@@ -67,7 +77,7 @@ class CreatePost extends React.Component{
             <Navbar/>
             <h1>Create post</h1>
             <div className='new-post'>
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleCreate}>
                     <Form.Input fluid placeholder='Post Title' onChange={this.handleChange} name='title' value={this.state.title}/>
                     <Form.Group widths='equal'>
                         <Form.Input fluid placeholder='Make' onChange={this.handleChange}name='make'value={this.state.make}/>
@@ -84,6 +94,10 @@ class CreatePost extends React.Component{
                     <h3>Upload Pictures</h3>
                     <input type='file' multiple onChange={this.handleFileChange}/>
                     <br/>
+                    <p>Preview:</p>
+                    <Grid columns={5}>
+                        {this.renderPreviewPictures()}
+                    </Grid>
                     <br/>
                     <Button type='submit'>Submit</Button>
                 </Form>

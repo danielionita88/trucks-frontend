@@ -16,10 +16,10 @@ class UsersProfile extends React.Component{
             <Navbar/>
             <Grid>
             <h2>Hello {this.props.user.username}</h2>
-            <Grid.Column floated='left' width={5}>
+            <Grid.Column width={5}>
                 <UsersPostsList/>
             </Grid.Column>
-            <Grid.Column floated='right'width={5}>
+            <Grid.Column width={5}>
                 <UsersLikedPosts/>
             </Grid.Column>
             </Grid>

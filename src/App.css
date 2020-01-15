@@ -1,5 +1,8 @@
 .new-post{
     width: 600px;
+    position:relative;
+    left:100px;
+    top:10px;
 }
 
 .truck-card {
@@ -39,5 +42,11 @@
 }
 
 .list-container{
-    height: 900px;
+    height: 90vh;
+    overflow: scroll;
+}
+
+#image-preview{
+    width:100px;
+    
 }

@@ -72,6 +72,7 @@ class PostList extends React.Component{
             <div className='list-container'>
                 {this.state.sortByPrice ? this.renderTrucks(sortedPosts) : this.renderTrucks(searchedPosts)}
             </div>
+            
         </div>
     }
 }
