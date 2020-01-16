@@ -1,7 +1,7 @@
 import React from 'react'
 import WithAuth from './WithAuth'
 import Navbar from './Navbar'
-import { Form, Button, TextArea, Image, Grid } from 'semantic-ui-react'
+import { Form, Button, TextArea, Grid } from 'semantic-ui-react'
 import {createPost} from '../actions/index'
 import {connect} from 'react-redux'
 import Geocode from 'react-geocode'
@@ -9,7 +9,7 @@ import Geocode from 'react-geocode'
 class CreatePost extends React.Component{
     constructor(props){
         super(props)
-        this.fileInputRef=React.createRef()
+        this.fileRef=React.createRef()
     }
 
     state={
@@ -57,10 +57,16 @@ class CreatePost extends React.Component{
         
     }
 
+    handleX=p=>{
+        this.setState({
+            photos: [...this.state.photos].filter(photo => photo !== p)
+        })
+    }
+
     renderPreviewPictures=()=>{
-        return [...this.state.photos].map(p => <Grid.Column width={3}>
-            <span>x</span>
-            <img id='image-preview' src={ URL.createObjectURL(p)}/>
+        return [...this.state.photos].map((p ,index)=> <Grid.Column key={index} width={3}>
+            <button onClick={()=>this.handleX(p)}>x</button>
+            <img alt='preview' id='image-preview' src={ URL.createObjectURL(p)}/>
             </Grid.Column>
         )
     }
@@ -69,6 +75,9 @@ class CreatePost extends React.Component{
         this.setState({
             [e.target.name]: e.target.value
         })
+    }
+    handleButton=()=>{
+        this.fileRef.current.focus()
     }
 
     render(){
@@ -92,8 +101,10 @@ class CreatePost extends React.Component{
                     <Form.Input fluid placeholder='Address "...123 street, City, State"'name='address' onChange={this.handleChange}value={this.state.address}/>
                     <TextArea placeholder='Description' name='description' onChange={this.handleChange} value={this.state.description}/>
                     <h3>Upload Pictures</h3>
-                    <input type='file' multiple onChange={this.handleFileChange}/>
+                    <Button type='button' onClick={this.handleButton}>Choose Files</Button>
+                    <input type='file' ref={this.fileRef} hidden multiple onChange={this.handleFileChange}/>
                     <br/>
+
                     <p>Preview:</p>
                     <Grid columns={5}>
                         {this.renderPreviewPictures()}

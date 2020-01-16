@@ -42,11 +42,23 @@
 }
 
 .list-container{
-    height: 90vh;
+    height: 85vh;
     overflow: scroll;
 }
 
 #image-preview{
     width:100px;
     
+}
+
+.menu{
+    height: 70px;
+}
+
+.item{
+    width: 200px;
+    border: hidden
+}
+#logo{
+    top:20px
 }
