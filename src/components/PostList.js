@@ -24,7 +24,7 @@ class PostList extends React.Component{
     }
 
     renderImages=(post)=>{
-        return post.photos_urls.map(url => <img src={`http://localhost:3000/${url}` } alt='truck'/>)
+        return post.photos_urls.map(url => <img src={`${url}` } alt='truck'/>)
     }
 
     renderTrucks=(posts)=>{
@@ -32,7 +32,7 @@ class PostList extends React.Component{
                 <Grid celled>
                 <Grid.Row>
                 <Grid.Column width={3}>
-                    <Image src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`http://localhost:3000/${post.photos_urls[0]}` } />
+                    <Image src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}` } />
                 </Grid.Column>
                 <Grid.Column width={13}>
                 <h3>{post.title}</h3>

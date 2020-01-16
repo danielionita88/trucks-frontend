@@ -15,7 +15,7 @@ class UsersLikedPosts extends React.Component{
     renderPosts=()=>{
         return this.props.likedPosts.map(post => <Grid key={post.id}>
             <Grid.Column width={2}>
-                <Image size='tiny' src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`http://localhost:3000/${post.photos_urls[0]}`}/>
+                <Image size='tiny' src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}`}/>
              </Grid.Column>
              <Grid.Column width={5}>
                  {post.title}

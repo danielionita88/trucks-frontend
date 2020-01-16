@@ -14,11 +14,14 @@ class Navbar extends React.Component{
         localStorage.clear()
         history.push('/')
     }
+    handleLogoClick=()=>{
+        history.push('/')
+    }
 
     render(){
         return <Menu position='left'>
             <Menu.Item>
-                <Image id='logo'size='small' alt='logo' src={'/trucks_logo.png'} />
+                <Image onClick={this.handleLogoClick} id='logo'size='small' alt='logo' src={'/trucks_logo.png'} />
             </Menu.Item>
             <Menu.Item>
                 <Link to='/used-trucks'>UsedTrucks</Link>
@@ -35,7 +38,7 @@ class Navbar extends React.Component{
             <Menu.Item position='right'>
                { !this.props.user.id ? <div><Link to='/login'>Login</Link> / <Link to='/signup'>Signup</Link></div>
                :
-               <Link onClick={this.handleClick}>Sign Out</Link>}
+               <Link to='' onClick={this.handleClick}>Sign Out</Link>}
             </Menu.Item>
         </Menu>
     }

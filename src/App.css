@@ -29,16 +29,14 @@
     z-index: 1;
 }
 
-.post-container{
-    position: relative;
-    top: 100px;
-    left:100px;
+#main-photo-container{
+    padding: 20px;
+    height: 500px;
+    width: 400px;
 }
 
 #main-photo{
-    padding: 20px;
-    height: 400px;
-    width: 400px;
+    max-height: 600px auto
 }
 
 .list-container{
@@ -61,4 +59,31 @@
 }
 #logo{
     top:20px
+}
+
+.each-slide > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 400px;
+}
+.each-slide h1 {
+    padding: 20px;
+    font-size: 20px;
+    background: #efefef;
+    text-align: center;
+  }
+.each-slide h3{
+    width: 300px;
+    position: relative;
+    left: 500px;
+    bottom: 300px;
+}
+  
+
+#slide-image{
+    width: 400px ;
+    margin-left: auto;
+    margin-right: auto;
 }

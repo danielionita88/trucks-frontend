@@ -101,8 +101,8 @@ class CreatePost extends React.Component{
                     <Form.Input fluid placeholder='Address "...123 street, City, State"'name='address' onChange={this.handleChange}value={this.state.address}/>
                     <TextArea placeholder='Description' name='description' onChange={this.handleChange} value={this.state.description}/>
                     <h3>Upload Pictures</h3>
-                    <Button type='button' onClick={this.handleButton}>Choose Files</Button>
-                    <input type='file' ref={this.fileRef} hidden multiple onChange={this.handleFileChange}/>
+                    {/* <Button type='button' onClick={this.handleButton}>Choose Files</Button> */}
+                    <input type='file' ref={this.fileRef} multiple onChange={this.handleFileChange}/>
                     <br/>
 
                     <p>Preview:</p>
