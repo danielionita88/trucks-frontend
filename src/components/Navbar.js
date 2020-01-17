@@ -20,10 +20,10 @@ class Navbar extends React.Component{
 
     render(){
         return <Menu position='left'>
-            <Menu.Item>
-                <Image onClick={this.handleLogoClick} id='logo'size='small' alt='logo' src={'/trucks_logo.png'} />
+            <Menu.Item onClick={this.handleLogoClick}>
+                <Image  id='logo' alt='logo' src={'/trucks_logo.png'} />
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item >
                 <Link to='/used-trucks'>UsedTrucks</Link>
             </Menu.Item>
             <Menu.Item>

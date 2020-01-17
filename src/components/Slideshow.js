@@ -13,6 +13,13 @@ const properties = {
     }
 }
 
+const pictures=[
+    'https://images.unsplash.com/photo-1540852360777-5f6fa7752aeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2892&q=80',
+    'https://images.unsplash.com/photo-1541969487406-1f1adf3884ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2855&q=80',
+    'https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2781&q=80',
+    'https://images.unsplash.com/photo-1519003722824-194d4455a60c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2855&q=80'
+]
+
 class Slideshow extends React.Component {
 
 
@@ -29,10 +36,8 @@ class Slideshow extends React.Component {
     }
 
     renderSlides=()=>{
-        return this.randomPosts().map(post =>  <div key={post.id} className="each-slide">
-            <img id='slide-image' src={post.photos_urls[0]}/>
-            <h3>{post.description}</h3>
-            <h1>{post.title}</h1>
+        return pictures.map((p, index) =>  <div key={index} className="each-slide">
+            <img id='slide-image' src={p}/>
             </div>
         )
     }
@@ -44,13 +49,9 @@ class Slideshow extends React.Component {
             return <h1>Loading...</h1>
         }
 
-        return (
-            <div className="slide-container">
-                <Slide {...properties}>
-                   {this.renderSlides()}
-                </Slide>
-            </div>
-        )
+        return <Slide {...properties}>
+                {this.renderSlides()}
+            </Slide>
     }
 }
 

@@ -58,32 +58,39 @@
     border: hidden
 }
 #logo{
-    top:20px
+    height:100%;
+    width: 100%;
+
+   
 }
 
 .each-slide > div {
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: center;
     background-size: cover;
-    height: 400px;
 }
-.each-slide h1 {
-    padding: 20px;
-    font-size: 20px;
-    background: #efefef;
-    text-align: center;
-  }
-.each-slide h3{
-    width: 300px;
-    position: relative;
-    left: 500px;
-    bottom: 300px;
-}
-  
 
 #slide-image{
-    width: 400px ;
-    margin-left: auto;
-    margin-right: auto;
+    width: 900px ;
+    text-align: center;
 }
+
+.home-page h1{
+    font-size: 100px;
+    text-align: center;
+    color: white;
+}
+
+body .home-page{
+    height: 100% auto;
+    background-image: url('/Background.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-blend-mode: luminosity;
+    filter: grayscale(100%);
+}
+
+.slide-container {
+    width: 100%;
+    margin: auto; }

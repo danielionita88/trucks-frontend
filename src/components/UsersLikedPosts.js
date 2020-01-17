@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {removeLike} from '../actions/index'
-import {Grid, Image, Button} from 'semantic-ui-react'
+import {Grid, Image, Button, Segment} from 'semantic-ui-react'
+import history from '../history'
 
 
 
@@ -12,19 +13,28 @@ class UsersLikedPosts extends React.Component{
         this.props.removeLike(userId,postId)
     }
 
+    handlePostClick=id=>{
+        history.push(`/used-trucks/${id}`)
+    }
+
     renderPosts=()=>{
-        return this.props.likedPosts.map(post => <Grid key={post.id}>
-            <Grid.Column width={2}>
-                <Image size='tiny' src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}`}/>
-             </Grid.Column>
-             <Grid.Column width={5}>
-                 {post.title}
-             </Grid.Column>
-             <Grid.Column width={2}>
-                <Button onClick={()=>this.handleClick(this.props.user.id,post.id)}size='tiny'>Unlike</Button>
-                <Button size='tiny'>Share</Button>
-             </Grid.Column>
-           </Grid>)
+        return this.props.likedPosts.map(post => <Segment>
+            <Grid onClick={()=>this.handlePostClick(post.id)} key={post.id}>
+                <Grid.Row>
+                    <Grid.Column floated='left' width={2}>
+                        <Image size='tiny' src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}`}/>
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                        {post.title}
+                    </Grid.Column>
+                    <Grid.Column floated='right' width={3}>
+                        <Button onClick={()=>this.handleClick(this.props.user.id,post.id)}size='tiny'>Unlike</Button>
+                        <Button size='tiny'>Share</Button>
+                    </Grid.Column>
+                </Grid.Row>
+           </Grid>
+           </Segment>
+        )
     }
 
     render(){
