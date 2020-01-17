@@ -69,7 +69,7 @@ class ShowPost extends React.Component{
         
         return <div>
             <Navbar/>
-            {this.props.user && !this.props.likedPosts.find(p => p.id === post.id) ? <Button onClick={()=>this.handleLike(this.props.user, post)}>Like</Button> : ''}
+            {this.props.user && !this.props.likedPosts.find(p => p.id === post.id) && post.user_id !== this.props.user  ? <Button onClick={()=>this.handleLike(this.props.user, post)}>Like</Button> : ''}
             <Grid container >
                 <Grid.Row>
                     <h2>{post.title}</h2>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar'
-import { Input, Grid, Image, Radio} from 'semantic-ui-react'
+import { Input, Grid, Image, Radio,Dimmer, Loader, Segment} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {setPost} from '../actions/index'
 
@@ -58,12 +58,22 @@ class PostList extends React.Component{
     }
  
     render(){
+        let posts=this.props.posts.sort((a,b) => a.id < b.id ? 1: -1)
         let term =this.state.searchTerm.toLowerCase()
         let searchedPosts = this.state.searchTerm ? 
-            this.props.posts.filter(post=> post.make.toLowerCase().includes(term)|| post.model.toLowerCase().includes(term) || post.title.toLowerCase().includes(term))
+            posts.filter(post=> post.make.toLowerCase().includes(term)|| post.model.toLowerCase().includes(term) || post.title.toLowerCase().includes(term))
             :
-            this.props.posts
+            posts
         let sortedPosts = this.sortPosts(searchedPosts)
+
+        if(this.props.posts.length === 0){
+            return <div>
+                <h1>Loading...</h1>
+                <Dimmer active>
+                    <Loader />
+                </Dimmer>
+                </div>
+        }
         return<div>
             <Navbar/>
             <Input onChange={this.handleSearch}icon='search' placeholder='Search...' />

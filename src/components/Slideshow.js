@@ -3,7 +3,7 @@ import { Slide } from 'react-slideshow-image';
 import { connect } from 'react-redux'
 
 const properties = {
-    duration: 5000,
+    duration: 3000,
     transitionDuration: 500,
     infinite: true,
     indicators: true,
