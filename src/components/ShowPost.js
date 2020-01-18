@@ -54,7 +54,7 @@ class ShowPost extends React.Component{
 
     renderPictures=urls=>{
         return urls.map((url,index) => 
-            <Image onMouseOver={()=>this.handleMouseOver(index)} id='preview-pictures' key={index}src={`${url}`}/>
+            <Image onMouseOver={()=>this.handleMouseOver(index)} size='tiny' key={index}src={`${url}`}/>
         )
     } 
 
@@ -75,9 +75,9 @@ class ShowPost extends React.Component{
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column width={8}>
-                        <Segment id='main-photo-container'>
-                            <Image id='main-photo' src={this.state.mainPhoto} />
-                        </Segment>
+                        <div id='main-photo'>
+                            <Image size='big' centered src={this.state.mainPhoto} />
+                        </div>
                         <Image.Group size='tiny'>
                             {this.renderPictures(post.photos_urls)}
                         </Image.Group>
@@ -124,7 +124,7 @@ class ShowPost extends React.Component{
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column width={13}>
-                        <p>Description:</p>
+                        <h3>Description:</h3>
                         <p>{post.description}</p>
                     </Grid.Column>
                 </Grid.Row>

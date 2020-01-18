@@ -29,25 +29,23 @@
     bottom: 350px;
     z-index: 1;
 }
+.ui.big.image{
+    max-height: 500px;
+    width: auto;
+    border-radius: 5px;
+}
 
-#main-photo-container{
-    padding: 20px;
-    height: 500px;
-    width: 400px;
+.ui.tiny.image{
+    max-height:100px;
 }
 
 #main-photo{
-    max-height: 600px auto
+    height: 520px
 }
 
 .list-container{
     height: 85vh;
     overflow: scroll;
-}
-
-#image-preview{
-    width:100px;
-    
 }
 
 .menu{

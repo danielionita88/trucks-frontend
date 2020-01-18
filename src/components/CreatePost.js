@@ -1,7 +1,7 @@
 import React from 'react'
 import WithAuth from './WithAuth'
 import Navbar from './Navbar'
-import { Form, Button, TextArea, Grid } from 'semantic-ui-react'
+import { Form, Button, TextArea, Grid, Image } from 'semantic-ui-react'
 import {createPost} from '../actions/index'
 import {connect} from 'react-redux'
 import Geocode from 'react-geocode'
@@ -63,7 +63,7 @@ class CreatePost extends React.Component{
         return [...this.state.photos].map((p ,index)=> 
             <Grid.Column key={index} width={3}>
                 <Button type='button' style={{padding:5}} size='mini'onClick={(event)=>this.handleX(event,p)}>x</Button>
-                <img alt='preview' id='image-preview' src={ URL.createObjectURL(p)}/>
+                <Image alt='preview' size='tiny'id='image-preview' src={ URL.createObjectURL(p)}/>
             </Grid.Column>
         )
     }
