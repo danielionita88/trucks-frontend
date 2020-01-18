@@ -1,15 +1,17 @@
 import React from 'react'
 import Navbar from './Navbar'
-import { Input, Grid, Image, Radio,Dimmer, Loader} from 'semantic-ui-react'
+import { Input, Grid, Image, Radio,Dimmer, Loader, Label,Icon} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {setPost} from '../actions/index'
+import MapContainer from './MapContainer'
 
 
 class PostList extends React.Component{
 
     state={
         sortByPrice: false,
-        searchTerm: ''
+        searchTerm: '',
+        mapView: false
     }
 
     handleSearch=e=>{
@@ -56,6 +58,12 @@ class PostList extends React.Component{
         let newArr = posts.slice()
        return newArr.sort((a,b)=> (a.price > b.price)? 1: -1)
     }
+
+    handleMapView=()=>{
+        this.setState({
+            mapView: !this.state.mapView
+        })
+    }
  
     render(){
         let posts=this.props.posts.sort((a,b) => a.id < b.id ? 1: -1)
@@ -74,14 +82,17 @@ class PostList extends React.Component{
                 </Dimmer>
                 </div>
         }
-        return<div>
+        
+        else return<div>
             <Navbar/>
             <Input onChange={this.handleSearch}icon='search' placeholder='Search...' />
             <Radio onClick={this.handleSort} label='Sort By Price' style={{margin:15}} checked={this.state.sortByPrice}/>
+            <Label as='a' onClick={this.handleMapView}><Icon name='map marker alternate'/>View on map</Label>
             <br/>
+            {this.state.mapView ? <MapContainer googleKey={this.props.googleKey} posts={searchedPosts}/> :
             <div className='list-container'>
                 {this.state.sortByPrice ? this.renderTrucks(sortedPosts) : this.renderTrucks(searchedPosts)}
-            </div>
+            </div>}
             
         </div>
     }
@@ -89,7 +100,8 @@ class PostList extends React.Component{
 
 const mapStateToProps=state=>{
     return{
-        posts: state.posts.allPosts
+        posts: state.posts.allPosts,
+        googleKey: state.googleKey
     }
 }
 

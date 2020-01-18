@@ -1,8 +1,8 @@
 import React from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import {connect} from 'react-redux'
-
-
+import ReactDOM from 'react-dom';
+import history from '../history'
 
 const mapStyles = {
     width: '70%',
@@ -15,15 +15,18 @@ class MapContainer extends React.Component{
     state={
         showingInfoWindow: false,
         activeMarker:{},
-        selectedPlace: {}
+        selectedPlace: {},
+        clickedPost:''
     }
 
-    onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
+    onMarkerClick = (props, marker, e) =>{
+      this.setState({
+        selectedPlace: props,
+        activeMarker: marker,
+        showingInfoWindow: true,
+        clickedPost:props.post
+      });
+    }
 
   onClose = () => {
     if (this.state.showingInfoWindow) {
@@ -34,8 +37,53 @@ class MapContainer extends React.Component{
     }
   }; 
 
+  displayMarkers=()=>{
+    return this.props.posts.map((post, index)=>{
+      return <Marker key={index} position={{
+        lat: post.lat,
+        lng: post.lng
+        }}
+        onClick={this.onMarkerClick}
+        name={post.title}
+        post={post}
+      />
+    })
+  }
+
+  handleInfoWindowClick=()=>{
+    history.push(`/used-trucks/${this.state.clickedPost.id}`)
+  }
+
+  onInfoWindowOpen=(props, e)=> {
+  const button = (<button onClick={this.handleInfoWindowClick}>{this.state.clickedPost.title}</button>);
+    ReactDOM.render(React.Children.only(button), document.getElementById("iwc"));
+  }
+
   renderMap = () => {
-    if (this.props.post.lat) {
+    if(this.props.posts){
+      return  <Map
+                google={this.props.google}
+                zoom={5}
+                style={mapStyles}
+                initialCenter={{
+                lat: 41.8781,
+                lng: -87.6298 
+                }}
+            >
+           {this.displayMarkers()}
+            <InfoWindow
+                onOpen={e => {this.onInfoWindowOpen(this.props,e)}}
+                marker={this.state.activeMarker}
+                visible={this.state.showingInfoWindow}
+                onClose={this.onClose}
+            >
+                <div id="iwc">
+                </div>
+            </InfoWindow>
+      </Map>
+      
+    }
+    else if (this.props.post.lat) {
       return  <Map
                 google={this.props.google}
                 zoom={14}
@@ -64,7 +112,7 @@ class MapContainer extends React.Component{
     }
   }
 
-    render(){
+    render(){console.log(this.props)
         return <div>
           {this.renderMap()}
         </div>
