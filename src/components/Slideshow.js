@@ -8,9 +8,6 @@ const properties = {
     infinite: true,
     indicators: true,
     arrows: true,
-    onChange: (oldIndex, newIndex) => {
-        console.log(`slide transition from ${oldIndex} to ${newIndex}`);
-    }
 }
 
 const pictures=[

@@ -53,7 +53,7 @@ class CreatePost extends React.Component{
         
     }
 
-    handleX=(event,p)=>{console.log('xxxxxxxxxx', event.target)
+    handleX=(event,p)=>{
         this.setState({
             photos: [...this.state.photos].filter(photo => photo !== p)
         })
@@ -61,7 +61,7 @@ class CreatePost extends React.Component{
 
     renderPreviewPictures=()=>{
         return [...this.state.photos].map((p ,index)=> <Grid.Column key={index} width={3}>
-            <Button type='button' size='mini'onClick={(event)=>this.handleX(event,p)}>x</Button>
+            <Button type='button' style={{padding:5}} size='mini'onClick={(event)=>this.handleX(event,p)}>x</Button>
             <img alt='preview' id='image-preview' src={ URL.createObjectURL(p)}/>
             </Grid.Column>
         )

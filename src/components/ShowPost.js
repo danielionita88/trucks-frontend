@@ -4,6 +4,7 @@ import {Grid, Image, Button, Segment} from 'semantic-ui-react'
 import Navbar from './Navbar'
 import MapContainer from './MapContainer'
 import {getPost, getKey, likePost} from '../actions/index'
+import {FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon,WhatsappShareButton, WhatsappIcon, EmailShareButton, EmailIcon} from 'react-share'
 
  
 class ShowPost extends React.Component{
@@ -58,8 +59,9 @@ class ShowPost extends React.Component{
         )
     } 
 
-    render(){
+    render(){ console.log(this.props)
         const post=this.props.selectedPost
+        const shareUrl=`http://trucks.com/${this.props.location.pathname}`
         if(this.state.loading) {
             return <div>
                 <h2>LOADING</h2>
@@ -68,7 +70,6 @@ class ShowPost extends React.Component{
         
         return <div>
             <Navbar/>
-            {this.props.user && !this.props.likedPosts.find(p => p.id === post.id) && post.user_id !== this.props.user  ? <Button onClick={()=>this.handleLike(this.props.user, post)}>Like</Button> : ''}
             <Grid container >
                 <Grid.Row>
                     <h2>{post.title}</h2>
@@ -83,14 +84,43 @@ class ShowPost extends React.Component{
                         </Image.Group>
                     </Grid.Column>
                     <Grid.Column width={5}>  
-                        <h3>Details:</h3>
-                        <p>Make: {post.make}</p>
-                        <p>Model: {post.model}</p>
-                        <p>Year: {post.model_year}</p>
-                        <p>Odometer: {post.odometer}</p>
-                        <p>Title status: {post.title_status}</p>
-                        <p>Price: {post.price}</p>
-                        <p>Address: {post.address}</p>
+                        <Grid.Row>
+                            <h3>Details:</h3>
+                            <p>Make: {post.make}</p>
+                            <p>Model: {post.model}</p>
+                            <p>Year: {post.model_year}</p>
+                            <p>Odometer: {post.odometer}</p>
+                            <p>Title status: {post.title_status}</p>
+                            <p>Price: {post.price}</p>
+                            <p>Address: {post.address}</p>
+                            {this.props.user && !this.props.likedPosts.find(p => p.id === post.id) && post.user_id !== this.props.user  ? <Button style={{padding: '10px'}}onClick={()=>this.handleLike(this.props.user, post)}>Like</Button> : ''}
+                        </Grid.Row>
+                        <Grid.Row>
+                            <FacebookShareButton
+                                url={shareUrl}
+                                quote={post.title}
+                            >
+                                <FacebookIcon size={40}/>
+                            </FacebookShareButton>
+                            <TwitterShareButton
+                                url={shareUrl}
+                                quote={post.title}
+                            >
+                                <TwitterIcon size={40}/>
+                            </TwitterShareButton>
+                            <WhatsappShareButton
+                                url={shareUrl}
+                                quote={post.title}
+                            >
+                                <WhatsappIcon size={40}/>
+                            </WhatsappShareButton>
+                            <EmailShareButton
+                                url={shareUrl}
+                                quote={post.title}
+                                >
+                                <EmailIcon size={40}/>
+                            </EmailShareButton>
+                        </Grid.Row>
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
