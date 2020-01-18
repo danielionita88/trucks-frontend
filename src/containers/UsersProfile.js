@@ -3,7 +3,7 @@ import UsersPostsList from '../components/UsersPostsList'
 import UsersLikedPosts from '../components/UsersLikedPosts'
 import WithAuth from '../components/WithAuth'
 import Navbar from '../components/Navbar'
-import {Grid, Segment} from 'semantic-ui-react'
+import {Grid} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 

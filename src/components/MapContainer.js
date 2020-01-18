@@ -5,11 +5,9 @@ import {connect} from 'react-redux'
 
 
 const mapStyles = {
-    
-    width: '40%',
-    height: '40%',
-    left:300,
-    top:100,
+    width: '70%',
+    height: '70%',
+    margin: 'auto',
 }
 
 class MapContainer extends React.Component{
@@ -27,7 +25,7 @@ class MapContainer extends React.Component{
       showingInfoWindow: true
     });
 
-  onClose = props => {
+  onClose = () => {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
@@ -36,9 +34,9 @@ class MapContainer extends React.Component{
     }
   }; 
 
-    render(){
-        return <div>
-            <Map
+  renderMap = () => {
+    if (this.props.post.lat) {
+      return  <Map
                 google={this.props.google}
                 zoom={14}
                 style={mapStyles}
@@ -60,7 +58,15 @@ class MapContainer extends React.Component{
                     <h4>{this.state.selectedPlace.name}</h4>
                 </div>
             </InfoWindow>
-                </Map>
+      </Map>
+    } else {
+      return <h4>LOADING</h4>
+    }
+  }
+
+    render(){
+        return <div>
+          {this.renderMap()}
         </div>
     }
   }

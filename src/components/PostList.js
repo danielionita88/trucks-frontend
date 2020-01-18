@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar'
-import { Input, Grid, Image, Radio,Dimmer, Loader, Segment} from 'semantic-ui-react'
+import { Input, Grid, Image, Radio,Dimmer, Loader} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {setPost} from '../actions/index'
 

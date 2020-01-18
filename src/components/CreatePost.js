@@ -7,10 +7,6 @@ import {connect} from 'react-redux'
 import Geocode from 'react-geocode'
 
 class CreatePost extends React.Component{
-    constructor(props){
-        super(props)
-        this.fileRef=React.createRef()
-    }
 
     state={
         title:'',
@@ -57,7 +53,7 @@ class CreatePost extends React.Component{
         
     }
 
-    handleX=p=>{
+    handleX=(event,p)=>{console.log('xxxxxxxxxx', event.target)
         this.setState({
             photos: [...this.state.photos].filter(photo => photo !== p)
         })
@@ -65,7 +61,7 @@ class CreatePost extends React.Component{
 
     renderPreviewPictures=()=>{
         return [...this.state.photos].map((p ,index)=> <Grid.Column key={index} width={3}>
-            <button onClick={()=>this.handleX(p)}>x</button>
+            <Button type='button' size='mini'onClick={(event)=>this.handleX(event,p)}>x</Button>
             <img alt='preview' id='image-preview' src={ URL.createObjectURL(p)}/>
             </Grid.Column>
         )
@@ -75,9 +71,6 @@ class CreatePost extends React.Component{
         this.setState({
             [e.target.name]: e.target.value
         })
-    }
-    handleButton=()=>{
-        this.fileRef.current.focus()
     }
 
     render(){
@@ -101,14 +94,14 @@ class CreatePost extends React.Component{
                     <Form.Input fluid placeholder='Address "...123 street, City, State"'name='address' onChange={this.handleChange}value={this.state.address}/>
                     <TextArea placeholder='Description' name='description' onChange={this.handleChange} value={this.state.description}/>
                     <h3>Upload Pictures</h3>
-                    {/* <Button type='button' onClick={this.handleButton}>Choose Files</Button> */}
-                    <input type='file' ref={this.fileRef} multiple onChange={this.handleFileChange}/>
+                    <label className='ui button' for='file-upload'>Choose Files</label>
+                    <input type='file' id='file-upload' hidden multiple  onChange={this.handleFileChange}/>
                     <br/>
-
-                    <p>Preview:</p>
+                    <br/>
                     <Grid columns={5}>
                         {this.renderPreviewPictures()}
                     </Grid>
+                    <br/>
                     <br/>
                     <Button type='submit'>Submit</Button>
                 </Form>

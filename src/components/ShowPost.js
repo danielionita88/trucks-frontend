@@ -5,7 +5,6 @@ import Navbar from './Navbar'
 import MapContainer from './MapContainer'
 import {getPost, getKey, likePost} from '../actions/index'
 
-
  
 class ShowPost extends React.Component{
     constructor(props){
@@ -102,7 +101,7 @@ class ShowPost extends React.Component{
                 </Grid.Row>
             </Grid>
             
-            {this.props.googleKey ? <MapContainer post={post} googleKey={this.props.googleKey}/> : null}
+            {this.props.googleKey ? <div id='map-container'><MapContainer post={post} googleKey={this.props.googleKey}/></div> : null}
         </div>
     }
 }

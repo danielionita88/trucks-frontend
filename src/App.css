@@ -93,4 +93,9 @@ body .home-page{
 
 .slide-container {
     width: 100%;
-    margin: auto; }
+    margin: auto; 
+}
+
+#map-container{
+    text-align: center;
+}

@@ -94,7 +94,7 @@ export const createPost= data=>{
         .then(resp => resp.json())
         .then(data=> {
             dispatch(addPost(data))
-            history.push(`/used-trucks/${data.id}`)
+            history.push(`/used-trucks`)
         })
     }
 }

@@ -1,12 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {deletePost} from '../actions/index'
+import {deletePost, setPost} from '../actions/index'
 import {Grid, Image, Button, Segment} from 'semantic-ui-react'
 import history from '../history'
-
-
-
-
 
 class UsersPostsList extends React.Component{
 
@@ -14,19 +10,19 @@ class UsersPostsList extends React.Component{
         this.props.deletePost(id)
     }
 
-    handlePostClick=id=>{
-        history.push(`/used-trucks/${id}`)
+    handlePostClick=post=>{
+        this.props.setPost(post)
+        history.push(`/used-trucks/${post.id}`)
     }
-
 
     renderPosts=posts=>{
        return posts.map(post => <Segment key={post.id}>
             <Grid >
                 <Grid.Row column='3' >
-                    <Grid.Column onClick={()=>this.handlePostClick(post.id)}floated='left' width={2}>
+                    <Grid.Column onClick={()=>this.handlePostClick(post)}floated='left' width={2}>
                         <Image size='tiny' src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}`}/>             
                     </Grid.Column>
-                    <Grid.Column onClick={()=>this.handlePostClick(post.id)} width={5}>
+                    <Grid.Column onClick={()=>this.handlePostClick(post)} width={5}>
                         {post.title}
                     </Grid.Column>
                     <Grid.Column floated='right' width={3}>
@@ -55,7 +51,8 @@ const mapStateToProps=state=>{
 }
 const mapDispatchToProps=dispatch=>{
     return{
-        deletePost: id => dispatch(deletePost(id))
+        deletePost: id => dispatch(deletePost(id)),
+        setPost: post=>dispatch(setPost(post))
     }
 }
 
