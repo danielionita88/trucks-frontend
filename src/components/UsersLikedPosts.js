@@ -18,14 +18,14 @@ class UsersLikedPosts extends React.Component{
     }
 
     renderPosts=()=>{
-        return this.props.likedPosts.map(post => <Segment key={post.id}>
+        return this.props.likedPosts.map(post => <Segment className='profile-list' key={post.id}>
             <Grid>
                 <Grid.Row>
                     <Grid.Column onClick={()=>this.handlePostClick(post)}floated='left' width={2}>
                         <Image size='tiny' src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}`}/>
                     </Grid.Column>
                     <Grid.Column onClick={()=>this.handlePostClick(post)}width={5}>
-                        {post.title}
+                        <h4>{post.title}</h4>
                     </Grid.Column>
                     <Grid.Column floated='right' width={3}>
                         <Grid.Row>

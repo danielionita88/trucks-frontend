@@ -19,28 +19,30 @@ class Navbar extends React.Component{
     }
 
     render(){
-        return <Menu position='left'>
-            <Menu.Item onClick={this.handleLogoClick}>
-                <Image  id='logo' alt='logo' src={'/trucks_logo.png'} />
-            </Menu.Item>
-            <Menu.Item >
-                <Link to='/used-trucks'>UsedTrucks</Link>
-            </Menu.Item>
-            <Menu.Item>
-                <Link to='/new-post'>Sell Truck</Link>
-            </Menu.Item>
-            {this.props.user.id ? 
-                <Menu.Item>
-                    <Link to='/profile'>Profile</Link> 
+        return (
+            <Menu position='left'>
+                <Menu.Item onClick={this.handleLogoClick}>
+                    <Image  id='logo' alt='logo' src={'/trucks_logo.png'} />
                 </Menu.Item>
-                : ""
-            }
-            <Menu.Item position='right'>
-               { !this.props.user.id ? <div><Link to='/login'>Login</Link> / <Link to='/signup'>Signup</Link></div>
-               :
-               <Link to='' onClick={this.handleClick}>Sign Out</Link>}
-            </Menu.Item>
-        </Menu>
+                <Menu.Item >
+                    <Link to='/used-trucks'>UsedTrucks</Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to='/new-post'>Sell Truck</Link>
+                </Menu.Item>
+                {this.props.user.id ? 
+                    <Menu.Item>
+                        <Link to='/profile'>Profile</Link> 
+                    </Menu.Item>
+                    : ""
+                }
+                <Menu.Item position='right'>
+                { !this.props.user.id ? <div><Link to='/login'>Login</Link> / <Link to='/signup'>Signup</Link></div>
+                :
+                <Link to='' onClick={this.handleClick}>Sign Out</Link>}
+                </Menu.Item>
+            </Menu>
+        )
     }
 }
 

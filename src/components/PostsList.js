@@ -6,7 +6,7 @@ import {setPost} from '../actions/index'
 import MapContainer from './MapContainer'
 
 
-class PostList extends React.Component{
+class PostsList extends React.Component{
 
     state={
         sortByPrice: false,
@@ -32,17 +32,17 @@ class PostList extends React.Component{
     renderTrucks=(posts)=>{
        return posts.map(post=> <div onClick={()=>this.handlePostClick(post)} key={post.id}className='truck-card'>
                 <Grid celled>
-                <Grid.Row>
-                <Grid.Column width={3}>
-                    <Image src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}` } />
-                </Grid.Column>
-                <Grid.Column width={13}>
-                <h3>{post.title}</h3>
-                <p>Model: {post.model}</p>
-                <p>Odometer: {post.odometer}</p>
-                <p>Price: ${post.price}</p>
-                </Grid.Column>
-                </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={3}>
+                            <Image src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}` } />
+                        </Grid.Column>
+                        <Grid.Column width={13}>
+                            <h3>{post.title}</h3>
+                            <p>Model: {post.model}</p>
+                            <p>Odometer: {post.odometer}</p>
+                            <p>Price: ${post.price}</p>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
             </div>
        )
@@ -85,15 +85,16 @@ class PostList extends React.Component{
         
         else return<div>
             <Navbar/>
-            <Input onChange={this.handleSearch}icon='search' placeholder='Search...' />
-            <Radio onClick={this.handleSort} label='Sort By Price' style={{margin:15}} checked={this.state.sortByPrice}/>
-            <Label as='a' onClick={this.handleMapView}><Icon name='map marker alternate'/>View on map</Label>
-            <br/>
+            <div className='sub-menu'>
+                <Input onChange={this.handleSearch}icon='search' placeholder='Search...' />
+                {!this.state.mapView ? <Radio onClick={this.handleSort} label='Sort By Price' style={{margin:15}} checked={this.state.sortByPrice}/> : null}
+                {this.state.mapView ? <Label as='a' onClick={this.handleMapView}><Icon name='list'/>View List</Label>: <Label as='a' onClick={this.handleMapView}><Icon name='map marker alternate'/>View on map</Label>}
+                <br/>
+            </div>
             {this.state.mapView ? <MapContainer googleKey={this.props.googleKey} posts={searchedPosts}/> :
             <div className='list-container'>
                 {this.state.sortByPrice ? this.renderTrucks(sortedPosts) : this.renderTrucks(searchedPosts)}
             </div>}
-            
         </div>
     }
 }
@@ -111,4 +112,4 @@ const mapDispatchToProps=dispatch=>{
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostList)
+export default connect(mapStateToProps, mapDispatchToProps)(PostsList)

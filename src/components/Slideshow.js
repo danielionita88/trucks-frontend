@@ -33,8 +33,9 @@ class Slideshow extends React.Component {
     }
 
     renderSlides=()=>{
-        return pictures.map((p, index) =>  <div key={index} className="each-slide">
-            <img id='slide-image' alt='truck' src={p}/>
+        return pictures.map((p, index) =>  
+            <div key={index} className="each-slide">
+                <img id='slide-image' alt='truck' src={p}/>
             </div>
         )
     }

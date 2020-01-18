@@ -60,9 +60,10 @@ class CreatePost extends React.Component{
     }
 
     renderPreviewPictures=()=>{
-        return [...this.state.photos].map((p ,index)=> <Grid.Column key={index} width={3}>
-            <Button type='button' style={{padding:5}} size='mini'onClick={(event)=>this.handleX(event,p)}>x</Button>
-            <img alt='preview' id='image-preview' src={ URL.createObjectURL(p)}/>
+        return [...this.state.photos].map((p ,index)=> 
+            <Grid.Column key={index} width={3}>
+                <Button type='button' style={{padding:5}} size='mini'onClick={(event)=>this.handleX(event,p)}>x</Button>
+                <img alt='preview' id='image-preview' src={ URL.createObjectURL(p)}/>
             </Grid.Column>
         )
     }

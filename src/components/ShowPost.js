@@ -22,7 +22,6 @@ class ShowPost extends React.Component{
         }
     }
 
-    
     componentDidMount(){
         if (this.state.loading){
             const id = parseInt(this.props.match.params.postId)

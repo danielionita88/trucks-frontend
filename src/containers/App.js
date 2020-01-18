@@ -7,7 +7,7 @@ import Login from '../components/Login'
 import history from '../history'
 import CreatePost from '../components/CreatePost'
 import HomePage from '../components/HomePage'
-import PostList from '../components/PostList'
+import PostsList from '../components/PostsList'
 import UsersProfile from './UsersProfile'
 import {connect} from 'react-redux'
 import {getAllPosts, getKey,checkUser} from '../actions/index'
@@ -32,7 +32,7 @@ class App extends React.Component {
         <Route exact path='/login' component={Login}/>
         <Route exact path='/new-post' component={CreatePost}/>
         <Route exact path='/' component={HomePage}/>
-        <Route exact path='/used-trucks' component={PostList}/>
+        <Route exact path='/used-trucks' component={PostsList}/>
         <Route exact path='/used-trucks/:postId' component={ShowPost}/>
         <Route exact path='/profile' component={UsersProfile}/>
       </Router>

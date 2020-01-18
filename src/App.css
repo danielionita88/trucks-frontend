@@ -10,6 +10,7 @@
     position: relative;
     left: 100px;
     top: 70px;
+    cursor: pointer;
 
 }
 
@@ -60,8 +61,11 @@
 #logo{
     height:100%;
     width: 100%;
+}
 
-   
+.sub-menu{
+    position:relative;
+    left: 50px;
 }
 
 .each-slide > div {
@@ -88,7 +92,6 @@ body .home-page{
     background-size: 100%;
     background-repeat: no-repeat;
     background-blend-mode: luminosity;
-    filter: grayscale(100%);
 }
 
 .slide-container {
@@ -98,4 +101,8 @@ body .home-page{
 
 #map-container{
     text-align: center;
+}
+
+.profile-list{
+    cursor: pointer;
 }
