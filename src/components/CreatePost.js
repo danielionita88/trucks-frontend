@@ -51,6 +51,7 @@ class CreatePost extends React.Component{
             this.props.createPost(data)
         }
         
+        
     }
 
     handleX=(event,p)=>{
@@ -74,11 +75,12 @@ class CreatePost extends React.Component{
         })
     }
 
-    render(){
+    render(){console.log(this.props)
 
         return <div>
             <Navbar/>
             <h1>Create post</h1>
+
             <div className='new-post'>
                 <Form onSubmit={this.handleCreate}>
                     <Form.Input fluid placeholder='Post Title' onChange={this.handleChange} name='title' value={this.state.title}/>
@@ -114,7 +116,8 @@ class CreatePost extends React.Component{
 const mapStateToProps=state=>{
     return{
         user: state.user,
-        googleKey: state.googleKey
+        googleKey: state.googleKey,
+        uploading: state.posts.uploading
     }
 }
 const mapDispatchToProps = dispatch=>{

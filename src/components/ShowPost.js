@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Grid, Image, Button, Segment} from 'semantic-ui-react'
+import {Grid, Image, Button} from 'semantic-ui-react'
 import Navbar from './Navbar'
 import MapContainer from './MapContainer'
 import {getPost, getKey, likePost} from '../actions/index'
@@ -58,7 +58,7 @@ class ShowPost extends React.Component{
         )
     } 
 
-    render(){ console.log(this.props)
+    render(){ 
         const post=this.props.selectedPost
         const shareUrl=`http://trucks.com/${this.props.location.pathname}`
         if(this.state.loading) {

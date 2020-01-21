@@ -1,4 +1,4 @@
-const posts = (state={allPosts: [],likedPosts: [], selectedPost:{photos_urls: []}}, action)=>{
+const posts = (state={allPosts: [],likedPosts: [], selectedPost:{photos_urls: []}, uploading: false}, action)=>{
     switch(action.type){
         case 'FETCH_ALL_POSTS':
             return {...state,

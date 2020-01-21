@@ -112,7 +112,7 @@ class MapContainer extends React.Component{
     }
   }
 
-    render(){console.log(this.props)
+    render(){
         return <div>
           {this.renderMap()}
         </div>
