@@ -1,7 +1,7 @@
 import React from 'react'
 import WithAuth from './WithAuth'
 import Navbar from './Navbar'
-import { Form, Button, TextArea, Grid, Image } from 'semantic-ui-react'
+import { Form, Button, TextArea, Grid, Image, Dimmer, Loader } from 'semantic-ui-react'
 import {createPost} from '../actions/index'
 import {connect} from 'react-redux'
 import Geocode from 'react-geocode'
@@ -75,12 +75,10 @@ class CreatePost extends React.Component{
         })
     }
 
-    render(){console.log(this.props)
-
+    render(){
         return <div>
             <Navbar/>
             <h1>Create post</h1>
-
             <div className='new-post'>
                 <Form onSubmit={this.handleCreate}>
                     <Form.Input fluid placeholder='Post Title' onChange={this.handleChange} name='title' value={this.state.title}/>
@@ -97,7 +95,12 @@ class CreatePost extends React.Component{
                     <Form.Input fluid placeholder='Address "...123 street, City, State"'name='address' onChange={this.handleChange}value={this.state.address}/>
                     <TextArea placeholder='Description' name='description' onChange={this.handleChange} value={this.state.description}/>
                     <h3>Upload Pictures</h3>
-                    <label className='ui button' for='file-upload'>Choose Files</label>
+                    {this.props.uploading ?  
+                        <Dimmer active>
+                            <Loader indeterminate>Uploading Files</Loader>
+                        </Dimmer> :
+                        <label className='ui button' for='file-upload'>Choose Files</label>
+                    }
                     <input type='file' id='file-upload' hidden multiple  onChange={this.handleFileChange}/>
                     <br/>
                     <br/>
@@ -110,7 +113,7 @@ class CreatePost extends React.Component{
                 </Form>
             </div>
         </div>
-    }
+        }
 }
 
 const mapStateToProps=state=>{

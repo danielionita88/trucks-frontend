@@ -10,6 +10,14 @@ const posts = (state={allPosts: [],likedPosts: [], selectedPost:{photos_urls: []
             return {...state,
                 selectedPost: action.post
             }
+        case 'UPLOAD_POST':
+            return {...state,
+                uploading: true
+            }
+        case 'FINISHED_UPLOADING':
+            return {...state,
+                uploading: false
+            }
         case 'ADD_POST':
             return {...state,
             allPosts: [...state.allPosts, action.post]}

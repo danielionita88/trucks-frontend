@@ -38,6 +38,13 @@ export const setPost=post=>{
         dispatch({type: 'SET_POST',post})
     }
 }
+const finishUpload=()=>{
+    return{type: 'FINISHED_UPLOADING'}
+}
+
+const uploadPost=()=>{
+    return{type: 'UPLOAD_POST'}
+}
 
 export const deletePost=id=>{
     return(dispatch)=>{
@@ -86,6 +93,7 @@ export const createPost= data=>{
     }
  
     return (dispatch)=>{
+        dispatch(uploadPost())
         const reqObj={
             method: 'POST',
             body: formData
@@ -94,6 +102,7 @@ export const createPost= data=>{
         .then(resp => resp.json())
         .then(data=> {
             dispatch(addPost(data))
+            dispatch(finishUpload())
             history.push(`/used-trucks`)
         })
     }
