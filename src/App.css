@@ -37,8 +37,8 @@
     border-radius: 5px;
 }
 
-.ui.tiny.image{
-    max-height:100px;
+.ui.small.image{
+    max-height:80px;
 }
 
 #main-photo{
