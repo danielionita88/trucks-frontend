@@ -55,6 +55,7 @@ export const deletePost=id=>{
             dispatch(removePost(id))
             }
         )
+        .catch(err=> console.log(err))
     }
 }
 
@@ -63,6 +64,7 @@ export const getPost=id=>{
         fetch(`http://localhost:3000/api/v1/posts/${id}`)
         .then(resp =>resp.json())
         .then(data=>dispatch(setPost(data)))
+        .catch(err=> console.log(err))
     }
 }
 
@@ -71,6 +73,7 @@ export const getKey=()=>{
         fetch("http://localhost:3000/api/v1/google_maps")
         .then(resp => resp.json())
         .then(data => dispatch(setKey(data.key)))
+        .catch(err=> console.log(err))
     }
 }
 export const createPost= data=>{
@@ -105,6 +108,7 @@ export const createPost= data=>{
             dispatch(finishUpload())
             history.push(`/used-trucks`)
         })
+        .catch(err=> console.log(err))
     }
 }
 
@@ -130,6 +134,7 @@ export const signup=(body)=>{
                 history.push('/')
             }
         })
+        .catch(err=> console.log(err))
     }
 }
 
@@ -139,6 +144,7 @@ export const getAllPosts=()=>{
         fetch('http://localhost:3000/api/v1/posts')
         .then(resp => resp.json())
         .then(posts=> dispatch(setAllPosts(posts)))
+        .catch(err=> console.log(err))
     }
 }
 
@@ -166,6 +172,7 @@ export const login=body=>{
                 history.push('/')
             }
         })
+        .catch(err=> console.log(err))
     }
 }
 
@@ -174,6 +181,7 @@ export const removeLike=(userId,postId)=>{
         fetch(`http://localhost:3000/api/v1/likes/${userId}/${postId}`, {method: 'DELETE'})
         .then(resp => resp.json())
         .then(data=>dispatch(deleteLike(postId)))
+        .catch(err=> console.log(err))
     }
 }
 
@@ -193,6 +201,7 @@ export const likePost=(userId,post) =>{
         fetch('http://localhost:3000/api/v1/likes', reqObj)
         .then(resp => resp.json())
         .then(data=>dispatch(addLike(post)))
+        .catch(err=> console.log(err))
     }
 }
 
@@ -219,5 +228,6 @@ export const checkUser=token=>{
             .then(resp => resp.json())
             .then(posts => dispatch(setLikedPosts(posts)))
         }})
+        .catch(err=> console.log(err))
     }
 }

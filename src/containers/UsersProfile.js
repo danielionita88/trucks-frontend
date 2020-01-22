@@ -14,7 +14,7 @@ class UsersProfile extends React.Component{
     render(){
         return <div>
             <Navbar/>
-            <Grid>
+            <Grid className='users-profile'>
                 <Grid.Row>
                     <Grid.Column>
                         <h2>Hello {this.props.user.username}</h2>
@@ -24,7 +24,7 @@ class UsersProfile extends React.Component{
                     <Grid.Column width={6}>
                         <UsersPostsList/>
                     </Grid.Column>
-                    <Grid.Column width={6}>
+                    <Grid.Column width={8}>
                         <UsersLikedPosts/>
                     </Grid.Column>
                 </Grid.Row>

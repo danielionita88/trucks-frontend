@@ -3,7 +3,7 @@ import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import {login, signup} from '../actions/index'
 import Navbar from './Navbar'
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 
 
@@ -26,7 +26,6 @@ class Login extends React.Component{
     }
 
     responseFacebook = (response) => {
-        console.log(response)
         const body={
             username: response.name.split(' ')[0]+response.id.slice(0,4) ,
             password: response.id,
@@ -35,9 +34,6 @@ class Login extends React.Component{
         }
         this.props.signup(body)
     }
-    handleFacebookLogin=()=>{
-        console.log('aaaaa')
-    }
 
     render(){
         return <div>
@@ -45,7 +41,7 @@ class Login extends React.Component{
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                 <Grid.Column style={{ maxWidth: 450 }}>
                     <Header as='h2' color='blue' textAlign='center'>
-                        <Image src='https://logopond.com/logos/e60a215d0cd51962610549d3ae45bb34.png' /> Log-in to your account
+                        <Image src='https://cdn.clipart.email/0fbfcca826625419e9c317993ee2b2b1_semi-truck-truck-18-wheeler-16-wheeler-22-wheeler-big-truck-_570-466.jpeg' /> Log-in to your account
                     </Header>
                     <Form onSubmit={this.handleLogin}>
                         <Segment stacked>
@@ -64,14 +60,16 @@ class Login extends React.Component{
                                 value={this.state.password} 
                                 placeholder='password'
                             />
-                            <Button color='blue' fluid size='large'>Login</Button>
+                            <Button color='blue' fluid size='small'>Login</Button>
                             <h4>OR</h4>
                             <FacebookLogin
                                 appId="261337928177060"
                                 autoLoad={false}
                                 fields="name,email,picture"
-                                // onClick={this.handleFacebookLogin}
                                 callback={this.responseFacebook} 
+                                render={renderProps => (
+                                    <Button color='blue' fluid size='large' onClick={renderProps.onClick}>Login with Facebook Account</Button>
+                                  )}
                             />
                         </Segment>
                     </Form>

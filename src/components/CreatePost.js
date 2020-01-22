@@ -78,7 +78,7 @@ class CreatePost extends React.Component{
     render(){
         return <div>
             <Navbar/>
-            <h1>Create post</h1>
+            <h1 style={{padding:'30px'}}>Create post</h1>
             <div className='new-post'>
                 <Form onSubmit={this.handleCreate}>
                     <Form.Input fluid placeholder='Post Title' onChange={this.handleChange} name='title' value={this.state.title}/>
@@ -99,7 +99,7 @@ class CreatePost extends React.Component{
                         <Dimmer active>
                             <Loader indeterminate>Uploading Files</Loader>
                         </Dimmer> :
-                        <label className='ui button' for='file-upload'>Choose Files</label>
+                        <label className='ui button' htmlFor='file-upload'>Choose Files</label>
                     }
                     <input type='file' id='file-upload' hidden multiple  onChange={this.handleFileChange}/>
                     <br/>

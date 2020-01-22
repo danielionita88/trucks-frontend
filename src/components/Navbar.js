@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { Menu, Image} from 'semantic-ui-react'
+import { Menu, Image, Divider} from 'semantic-ui-react'
 import {signout} from '../actions/index'
 import history from '../history'
 
@@ -19,19 +19,18 @@ class Navbar extends React.Component{
     }
 
     render(){
-        return (
-            <Menu position='left'>
-                <Menu.Item onClick={this.handleLogoClick}>
-                    <Image  id='logo' alt='logo' src={'/trucks_logo.png'} />
+        return <div className='navbar'>
+            
+            <Menu >
+            <Image src={'/trucks_logo.png'} style={{cursor: 'pointer'}} onClick={this.handleLogoClick}/>
+                <Menu.Item position='right'>
+                    <Link to='/used-trucks'>Trucks</Link>
                 </Menu.Item>
-                <Menu.Item >
-                    <Link to='/used-trucks'>UsedTrucks</Link>
-                </Menu.Item>
-                <Menu.Item>
+                <Menu.Item position='right'>
                     <Link to='/new-post'>Sell Truck</Link>
                 </Menu.Item>
                 {this.props.user.id ? 
-                    <Menu.Item>
+                    <Menu.Item position='right'>
                         <Link to='/profile'>Profile</Link> 
                     </Menu.Item>
                     : ""
@@ -42,7 +41,8 @@ class Navbar extends React.Component{
                 <Link to='' onClick={this.handleClick}>Sign Out</Link>}
                 </Menu.Item>
             </Menu>
-        )
+            
+        </div>
     }
 }
 

@@ -4,7 +4,10 @@
     left:100px;
     top:10px;
 }
-
+.users-profile{
+    position: absolute;
+    left: 50px
+}
 .truck-card {
     width: 1000px;
     position: relative;
@@ -47,15 +50,22 @@
     height: 85vh;
     overflow: scroll;
 }
+.navbar{
+    padding-bottom:30px;
+}
 
 .menu{
     height: 70px;
 }
 
+
 .item{
     width: 200px;
-    border: hidden
+    padding-left: 100px;
+    padding-right: 100px;
+    cursor: pointer;
 }
+
 #logo{
     height:100%;
     width: 100%;
@@ -85,7 +95,7 @@
 }
 
 body .home-page{
-    height: 100% auto;
+    height: 100vh auto;
     background-image: url('/Background.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
