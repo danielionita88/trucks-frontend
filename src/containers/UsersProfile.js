@@ -21,7 +21,7 @@ class UsersProfile extends React.Component{
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
-                    <Grid.Column width={6}>
+                    <Grid.Column width={8}>
                         <UsersPostsList/>
                     </Grid.Column>
                     <Grid.Column width={8}>

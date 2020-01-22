@@ -1,7 +1,7 @@
 import React from 'react'
 import WithAuth from './WithAuth'
 import Navbar from './Navbar'
-import { Form, Button, TextArea, Grid, Image, Dimmer, Loader } from 'semantic-ui-react'
+import { Form, Button, TextArea, Grid, Image, Dimmer, Loader, Segment } from 'semantic-ui-react'
 import {createPost} from '../actions/index'
 import {connect} from 'react-redux'
 import Geocode from 'react-geocode'
@@ -64,7 +64,7 @@ class CreatePost extends React.Component{
         return [...this.state.photos].map((p ,index)=> 
             <Grid.Column key={index} width={3}>
                 <Button type='button' style={{padding:5}} size='mini'onClick={(event)=>this.handleX(event,p)}>x</Button>
-                <Image alt='preview' size='tiny'id='image-preview' src={ URL.createObjectURL(p)}/>
+                <Image alt='preview' size='small' src={ URL.createObjectURL(p)}/>
             </Grid.Column>
         )
     }
@@ -78,41 +78,69 @@ class CreatePost extends React.Component{
     render(){
         return <div>
             <Navbar/>
-            <h1 style={{padding:'30px'}}>Create post</h1>
-            <div className='new-post'>
-                <Form onSubmit={this.handleCreate}>
-                    <Form.Input fluid placeholder='Post Title' onChange={this.handleChange} name='title' value={this.state.title}/>
-                    <Form.Group widths='equal'>
-                        <Form.Input fluid placeholder='Make' onChange={this.handleChange}name='make'value={this.state.make}/>
-                        <Form.Input fluid placeholder='Model' onChange={this.handleChange}name='model'value={this.state.model}/>
-                        <Form.Input fluid placeholder='Year' onChange={this.handleChange}name='model_year'value={this.state.model_year}/>
-                        <Form.Input fluid placeholder='Price' onChange={this.handleChange} name='price'value={this.state.price}/>
-                    </Form.Group>
-                    <Form.Group widths='equal'>
-                        <Form.Input fluid placeholder='Odometer' name='odometer'onChange={this.handleChange}value={this.state.odometer}/>
-                        <Form.Input fluid placeholder='Title Status'name='title_status' onChange={this.handleChange}value={this.state.title_status}/> 
-                    </Form.Group>
-                    <Form.Input fluid placeholder='Address "...123 street, City, State"'name='address' onChange={this.handleChange}value={this.state.address}/>
-                    <TextArea placeholder='Description' name='description' onChange={this.handleChange} value={this.state.description}/>
-                    <h3>Upload Pictures</h3>
-                    {this.props.uploading ?  
-                        <Dimmer active>
-                            <Loader indeterminate>Uploading Files</Loader>
-                        </Dimmer> :
-                        <label className='ui button' htmlFor='file-upload'>Choose Files</label>
-                    }
-                    <input type='file' id='file-upload' hidden multiple  onChange={this.handleFileChange}/>
+            <Grid id='create-post'columns={2}>
+                <Grid.Column width={7}>
+                    <h1 >Create Post</h1>
                     <br/>
-                    <br/>
-                    <Grid columns={5}>
+                    <Form onSubmit={this.handleCreate}>
+                        <label>Post Title</label>
+                        <Form.Input fluid placeholder='Post Title' onChange={this.handleChange} name='title' value={this.state.title}/>
+                        <Form.Group widths='equal'>
+                            <Form.Field>
+                                <label>Make</label>
+                                <Form.Input fluid placeholder='Make' onChange={this.handleChange}name='make'value={this.state.make}/>
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Model</label>
+                                <Form.Input fluid placeholder='Model' onChange={this.handleChange}name='model'value={this.state.model}/>
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Year</label>
+                                <Form.Input fluid placeholder='Year' onChange={this.handleChange}name='model_year'value={this.state.model_year}/>
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Price</label>
+                                <Form.Input fluid placeholder='Price' onChange={this.handleChange} name='price'value={this.state.price}/>
+                            </Form.Field>
+                        </Form.Group>
+                        <Form.Group widths='equal'>
+                            <Form.Field>
+                                <label>Odometer</label>
+                                <Form.Input fluid placeholder='Odometer' name='odometer'onChange={this.handleChange}value={this.state.odometer}/>
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Title Status</label>
+                            <Form.Input fluid placeholder='Title Status'name='title_status' onChange={this.handleChange}value={this.state.title_status}/> 
+                            </Form.Field>
+                        </Form.Group>
+                        <Form.Field>
+                            <label>Address</label>
+                            <Form.Input fluid placeholder='...123 street, City, State'name='address' onChange={this.handleChange}value={this.state.address}/>
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Description</label>
+                        <TextArea placeholder='Description' name='description' onChange={this.handleChange} value={this.state.description}/>
+                        </Form.Field>
+                        <h3>Upload Pictures</h3>
+                        {this.props.uploading ?  
+                            <Dimmer active>
+                                <Loader indeterminate>Uploading Files</Loader>
+                            </Dimmer> :
+                            <label className='ui button' htmlFor='file-upload'>Choose Files</label>
+                        }
+                        <input type='file' id='file-upload' hidden multiple  onChange={this.handleFileChange}/>
+                        <br/>
+                        <br/>
+                        <Button type='submit'>Submit</Button>
+                    </Form>
+                </Grid.Column>
+                <Grid.Column width={7}>
+                    <Grid id='preview-pictures' columns={5}>
                         {this.renderPreviewPictures()}
                     </Grid>
-                    <br/>
-                    <br/>
-                    <Button type='submit'>Submit</Button>
-                </Form>
+                </Grid.Column>
+            </Grid>
             </div>
-        </div>
         }
 }
 

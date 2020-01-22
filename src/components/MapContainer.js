@@ -8,6 +8,7 @@ const mapStyles = {
     width: '70%',
     height: '70%',
     margin: 'auto',
+    marginTop:'50px',
 }
 
 class MapContainer extends React.Component{

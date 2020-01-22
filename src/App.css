@@ -1,8 +1,7 @@
 .new-post{
-    width: 600px;
+    width: 800px;
     position:relative;
     left:100px;
-    top:10px;
 }
 .users-profile{
     position: absolute;
@@ -57,7 +56,6 @@
 .menu{
     height: 70px;
 }
-
 
 .item{
     width: 200px;
@@ -120,4 +118,15 @@ body .home-page{
     left: 0;
     bottom:0;
     right:0;
+}
+
+#create-post{
+    position: relative;
+    left: 50px;
+}
+
+#preview-pictures{
+    position: relative;
+    top: 45px;
+    left:20px;
 }
