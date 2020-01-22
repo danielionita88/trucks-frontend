@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { Menu, Image, Divider} from 'semantic-ui-react'
+import { Menu, Image} from 'semantic-ui-react'
 import {signout} from '../actions/index'
 import history from '../history'
 
@@ -21,7 +21,7 @@ class Navbar extends React.Component{
     render(){
         return <div className='navbar'>
             
-            <Menu >
+            <Menu size='big'>
             <Image src={'/trucks_logo.png'} style={{cursor: 'pointer'}} onClick={this.handleLogoClick}/>
                 <Menu.Item position='right'>
                     <Link to='/used-trucks'>Trucks</Link>

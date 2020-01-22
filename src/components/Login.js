@@ -50,7 +50,7 @@ class Login extends React.Component{
                                 name={'username'} 
                                 onChange={this.handleChange} 
                                 value={this.state.username} 
-                                placeholder='username'
+                                placeholder='Username'
                             />
                             <Form.Input fluid icon='lock'
                                 iconPosition='left'
@@ -58,7 +58,7 @@ class Login extends React.Component{
                                 type='password'
                                 onChange={this.handleChange} 
                                 value={this.state.password} 
-                                placeholder='password'
+                                placeholder='Password'
                             />
                             <Button color='blue' fluid size='small'>Login</Button>
                             <h4>OR</h4>

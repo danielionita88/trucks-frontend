@@ -20,16 +20,33 @@ class UsersLikedPosts extends React.Component{
     renderPosts=()=>{
         return this.props.likedPosts.map(post => <Segment className='profile-list' key={post.id}>
             <Grid>
-                <Grid.Row>
-                    <Grid.Column onClick={()=>this.handlePostClick(post)}floated='left' width={2}>
-                        <Image size='tiny' src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}`}/>
+                <Grid.Row columns='3'>
+                    <Grid.Column 
+                        onClick={()=>this.handlePostClick(post)}
+                        floated='left'
+                        width={3}
+                    >
+                        <Image size='tiny'
+                            src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}`}
+                        />
                     </Grid.Column>
-                    <Grid.Column onClick={()=>this.handlePostClick(post)}width={5}>
+                    <Grid.Column 
+                        onClick={()=>this.handlePostClick(post)} 
+                        width={10}
+                    >
                         <h4>{post.title}</h4>
                     </Grid.Column>
-                    <Grid.Column floated='right' width={3}>
+                    <Grid.Column 
+                        floated='right' 
+                        width={3}
+                    >
                         <Grid.Row>
-                            <Button onClick={()=>this.handleClick(this.props.user.id,post.id)}size='tiny'>Unlike</Button>
+                            <Button 
+                                onClick={()=>this.handleClick(this.props.user.id,post.id)}
+                                size='tiny'
+                            >
+                                Unlike
+                            </Button>
                         </Grid.Row>
                         <Grid.Row>
                         <FacebookShareButton

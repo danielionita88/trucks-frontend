@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {signup} from '../actions/index'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Header } from 'semantic-ui-react'
 import Navbar from './Navbar'
 
 
@@ -30,23 +30,50 @@ class Signup extends React.Component{
         return <div >
             <Navbar/>
             <div className='signup'>
-                <h3>Create User</h3>
+                <h2>Create User</h2>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
                         <label>Username</label>
-                        <input onChange={this.handleChange}type='text' name='username' value={this.state.username}/>
+                        <Form.Input 
+                            onChange={this.handleChange}
+                            type='text' 
+                            iconPosition='left' 
+                            icon='user'
+                            name='username'
+                            value={this.state.username}
+                        />
                     </Form.Field>
                     <Form.Field>
                         <label>Password</label>
-                        <input onChange={this.handleChange} type='password' name='password' value={this.state.password}/>
+                        <Form.Input 
+                            icon='lock'
+                            iconPosition='left'
+                            onChange={this.handleChange} 
+                            type='password' 
+                            name='password' 
+                            value={this.state.password}
+                        />
                     </Form.Field>
                     <Form.Field>
                         <label>Confirm Password</label>
-                        <input onChange={this.handleChange} type='password' name='password_confirmation' value={this.state.password_confirmation}/>
+                        <Form.Input 
+                            icon='lock'
+                            iconPosition='left'
+                            onChange={this.handleChange}
+                            type='password' 
+                            name='password_confirmation' 
+                            value={this.state.password_confirmation}
+                        />
                     </Form.Field>
                     <Form.Field>
                         <label> Email</label>
-                        <input onChange={this.handleChange} type='text' name='email' value={this.state.email}/>
+                        <Form.Input 
+                            icon='mail'
+                            iconPosition='left'
+                            onChange={this.handleChange} 
+                            type='text' 
+                            name='email' 
+                            value={this.state.email}/>
                     </Form.Field>
                     <Button type='submit'>Submit</Button>
                 </Form>

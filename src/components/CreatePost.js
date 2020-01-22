@@ -1,7 +1,7 @@
 import React from 'react'
 import WithAuth from './WithAuth'
 import Navbar from './Navbar'
-import { Form, Button, TextArea, Grid, Image, Dimmer, Loader, Segment } from 'semantic-ui-react'
+import { Form, Button, TextArea, Grid, Image, Dimmer, Loader} from 'semantic-ui-react'
 import {createPost} from '../actions/index'
 import {connect} from 'react-redux'
 import Geocode from 'react-geocode'

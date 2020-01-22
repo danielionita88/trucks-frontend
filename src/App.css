@@ -20,14 +20,14 @@
     z-index: 2;
     width: 400px;
     position: relative;
-    left: 100px;
+    left: 300px;
     top: 100px;
 }
 
 #sign-up-img{
     width: 900px;
     position: relative;
-    left: 300px;
+    left: 400px;
     bottom: 350px;
     z-index: 1;
 }
@@ -61,7 +61,6 @@
     width: 200px;
     padding-left: 100px;
     padding-right: 100px;
-    cursor: pointer;
 }
 
 #logo{
@@ -110,6 +109,7 @@ body .home-page{
 }
 
 .profile-list{
+    width: 700px;
     cursor: pointer;
 }
 .ui.active.transition.visible.dimmer{

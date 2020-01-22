@@ -19,13 +19,23 @@ class UsersPostsList extends React.Component{
        return posts.map(post => <Segment className='profile-list'key={post.id}>
             <Grid >
                 <Grid.Row column='3' >
-                    <Grid.Column onClick={()=>this.handlePostClick(post)}floated='left' width={2}>
+                    <Grid.Column 
+                        onClick={()=>this.handlePostClick(post)}
+                        floated='left' 
+                        width={3}
+                    >
                         <Image size='tiny' src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}`}/>             
                     </Grid.Column>
-                    <Grid.Column onClick={()=>this.handlePostClick(post)} width={5}>
+                    <Grid.Column 
+                        onClick={()=>this.handlePostClick(post)} 
+                        width={10}
+                    >
                         <h4>{post.title}</h4>
                     </Grid.Column>
-                    <Grid.Column floated='right' width={3}>
+                    <Grid.Column 
+                        floated='right' 
+                        width={3}
+                    >
                         <Button onClick={()=>this.handleDelete(post.id)}size='tiny'>Delete</Button>
                     </Grid.Column>
                 </Grid.Row>
