@@ -1,7 +1,7 @@
 import React from 'react'
 import WithAuth from './WithAuth'
 import Navbar from './Navbar'
-import { Form, Button, TextArea, Grid, Image, Dimmer, Loader} from 'semantic-ui-react'
+import { Form, Button, TextArea, Grid, Image, Dimmer, Loader, Popup} from 'semantic-ui-react'
 import {createPost} from '../actions/index'
 import {connect} from 'react-redux'
 import Geocode from 'react-geocode'
@@ -23,9 +23,12 @@ class CreatePost extends React.Component{
     }
 
     handleFileChange=e=>{ 
+        if(e.target.files.length > 6) {
+            alert('You can choose maximum 6 pictures !!!')
+        }
+        else
         this.setState({
             photos:e.target.files,
-            
         })
     }
 
@@ -126,7 +129,7 @@ class CreatePost extends React.Component{
                             <Dimmer active>
                                 <Loader indeterminate>Uploading Files</Loader>
                             </Dimmer> :
-                            <label className='ui button' htmlFor='file-upload'>Choose Files</label>
+                            <label className='ui button' htmlFor='file-upload'>Choose Pictures (Maximum 6)</label>
                         }
                         <input type='file' id='file-upload' hidden multiple  onChange={this.handleFileChange}/>
                         <br/>
