@@ -34,7 +34,7 @@ class PostsList extends React.Component{
                 <Grid celled>
                     <Grid.Row>
                         <Grid.Column width={3}>
-                            <Image src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}` } />
+                            <Image size ='medium' src={post.photos_urls.length < 1 ? `https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg`:`${post.photos_urls[0]}` } />
                         </Grid.Column>
                         <Grid.Column width={13}>
                             <h3>{post.title}</h3>

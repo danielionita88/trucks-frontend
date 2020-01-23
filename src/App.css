@@ -41,6 +41,13 @@
     max-height:80px;
 }
 
+.ui.tiny.image{
+    max-height:60px;
+}
+.ui.medium.image{
+    max-height:125px;
+}
+
 #main-photo{
     height: 520px
 }
