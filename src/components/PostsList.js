@@ -108,7 +108,7 @@ const mapStateToProps=state=>{
 
 const mapDispatchToProps=dispatch=>{
     return{
-        setPost: postId=>dispatch(setPost(postId))
+        setPost: post=>dispatch(setPost(post))
     }
 }
 

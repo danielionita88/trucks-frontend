@@ -3,6 +3,7 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import {connect} from 'react-redux'
 import ReactDOM from 'react-dom';
 import history from '../history'
+import {setPost} from '../actions/index'
 
 const mapStyles = {
     width: '70%',
@@ -27,6 +28,7 @@ class MapContainer extends React.Component{
         showingInfoWindow: true,
         clickedPost:props.post
       });
+      this.props.setPost(this.state.clickedPost)
     }
 
   onClose = () => {
@@ -125,4 +127,10 @@ class MapContainer extends React.Component{
       key: state.google
     }
   } 
-export default connect(mapStateToProps)(GoogleApiWrapper(props => {return{apiKey: props.googleKey}})(MapContainer))
+
+  const mapDispatchToProps=dispatch=>{
+    return{
+      setPost: post=>dispatch(setPost(post))
+    }
+  }
+export default connect(mapStateToProps, mapDispatchToProps)(GoogleApiWrapper(props => {return{apiKey: props.googleKey}})(MapContainer))

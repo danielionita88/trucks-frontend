@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {signup} from '../actions/index'
-import { Button, Form, Header } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 import Navbar from './Navbar'
 
 

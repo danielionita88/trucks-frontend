@@ -21,7 +21,7 @@ class Navbar extends React.Component{
     render(){
         return <div className='navbar'>
             
-            <Menu size='big'>
+            <Menu >
             <Image src={'/trucks_logo.png'} style={{cursor: 'pointer'}} onClick={this.handleLogoClick}/>
                 <Menu.Item position='right'>
                     <Link to='/used-trucks'>Trucks</Link>
