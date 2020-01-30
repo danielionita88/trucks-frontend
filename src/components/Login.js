@@ -24,8 +24,8 @@ class Login extends React.Component{
         this.props.login(this.state)
     }
 
-    responseFacebook = (response) => {
-        if (response){
+    responseFacebook = (response) => {console.log(response)
+        if (response.status !== 'unknown'){
             const body={
                 username: response.name.split(' ')[0]+response.id.slice(0,4) ,
                 password: response.id,
