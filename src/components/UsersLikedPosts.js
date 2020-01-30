@@ -83,7 +83,7 @@ class UsersLikedPosts extends React.Component{
 
     render(){
         return <div>
-            <h1>Liked Posts</h1>
+            {this.props.likedPosts.length > 0 ? <h1>Liked Posts</h1> : null}
             {this.renderPosts()}
         </div>
     }
