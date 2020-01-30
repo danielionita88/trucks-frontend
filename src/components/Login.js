@@ -43,8 +43,8 @@ class Login extends React.Component{
                     <Header as='h2' color='blue' textAlign='center'>
                         <Image src='https://cdn.clipart.email/0fbfcca826625419e9c317993ee2b2b1_semi-truck-truck-18-wheeler-16-wheeler-22-wheeler-big-truck-_570-466.jpeg' /> Log-in to your account
                     </Header>
-                    <Form onSubmit={this.handleLogin}>
-                        <Segment stacked>
+                    <Segment stacked>
+                        <Form onSubmit={this.handleLogin}>
                             <Form.Input fluid icon='user' 
                                 iconPosition='left'
                                 name={'username'} 
@@ -62,17 +62,17 @@ class Login extends React.Component{
                             />
                             <Button color='blue' fluid size='small'>Login</Button>
                             <h4>OR</h4>
-                        </Segment>
-                    </Form>
-                    <FacebookLogin
-                                appId="261337928177060"
-                                autoLoad={false}
-                                fields="name,email,picture"
-                                callback={this.responseFacebook} 
-                                render={renderProps => (
-                                    <Button color='blue' fluid size='large' onClick={renderProps.onClick}>Login with Facebook Account</Button>
-                                  )}
-                    />
+                        </Form>
+                        <FacebookLogin
+                            appId="261337928177060"
+                            autoLoad={false}
+                            fields="name,email,picture"
+                            callback={this.responseFacebook} 
+                            render={renderProps => (
+                                <Button color='blue' fluid size='large' onClick={renderProps.onClick}>Login with Facebook Account</Button>
+                                )}
+                        />
+                    </Segment>
                 </Grid.Column>
             </Grid>
         </div>
