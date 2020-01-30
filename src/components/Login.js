@@ -2,7 +2,6 @@ import React from 'react'
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import {login, signup} from '../actions/index'
-import Navbar from './Navbar'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 
@@ -10,8 +9,8 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 class Login extends React.Component{
 
     state={
-        username: 'daniel',
-        password: '1234'
+        username: '',
+        password: ''
     }
 
     handleChange=e=>{
@@ -26,18 +25,19 @@ class Login extends React.Component{
     }
 
     responseFacebook = (response) => {
-        const body={
-            username: response.name.split(' ')[0]+response.id.slice(0,4) ,
-            password: response.id,
-            password_confirmation: response.id,
-            email: response.email
+        if (response){
+            const body={
+                username: response.name.split(' ')[0]+response.id.slice(0,4) ,
+                password: response.id,
+                password_confirmation: response.id,
+                email: response.email
+            }
+            this.props.signup(body)
         }
-        this.props.signup(body)
     }
 
     render(){
         return <div>
-            <Navbar/>
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                 <Grid.Column style={{ maxWidth: 450 }}>
                     <Header as='h2' color='blue' textAlign='center'>
@@ -62,7 +62,9 @@ class Login extends React.Component{
                             />
                             <Button color='blue' fluid size='small'>Login</Button>
                             <h4>OR</h4>
-                            <FacebookLogin
+                        </Segment>
+                    </Form>
+                    <FacebookLogin
                                 appId="261337928177060"
                                 autoLoad={false}
                                 fields="name,email,picture"
@@ -70,9 +72,7 @@ class Login extends React.Component{
                                 render={renderProps => (
                                     <Button color='blue' fluid size='large' onClick={renderProps.onClick}>Login with Facebook Account</Button>
                                   )}
-                            />
-                        </Segment>
-                    </Form>
+                    />
                 </Grid.Column>
             </Grid>
         </div>

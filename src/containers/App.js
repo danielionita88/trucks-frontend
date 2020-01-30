@@ -12,6 +12,7 @@ import UsersProfile from './UsersProfile'
 import {connect} from 'react-redux'
 import {getAllPosts, getKey,checkUser} from '../actions/index'
 import ShowPost from '../components/ShowPost'
+import Navbar from '../components/Navbar'
 
 class App extends React.Component {
 
@@ -28,6 +29,7 @@ class App extends React.Component {
   render(){
     return (
       <Router history={history}>
+        <Navbar/>
         <Route exact path='/signup' component={Signup}/>
         <Route exact path='/login' component={Login}/>
         <Route exact path='/new-post' component={CreatePost}/>

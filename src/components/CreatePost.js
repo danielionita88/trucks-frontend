@@ -1,7 +1,6 @@
 import React from 'react'
 import WithAuth from './WithAuth'
-import Navbar from './Navbar'
-import { Form, Button, TextArea, Grid, Image, Dimmer, Loader, Popup} from 'semantic-ui-react'
+import { Form, Button, TextArea, Grid, Image, Dimmer, Loader} from 'semantic-ui-react'
 import {createPost} from '../actions/index'
 import {connect} from 'react-redux'
 import Geocode from 'react-geocode'
@@ -80,7 +79,7 @@ class CreatePost extends React.Component{
 
     render(){
         return <div>
-            <Navbar/>
+            <br/>
             <Grid id='create-post'columns={2}>
                 <Grid.Column width={7}>
                     <h1 >Create Post</h1>

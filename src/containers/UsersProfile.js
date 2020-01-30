@@ -2,7 +2,6 @@ import React from 'react'
 import UsersPostsList from '../components/UsersPostsList'
 import UsersLikedPosts from '../components/UsersLikedPosts'
 import WithAuth from '../components/WithAuth'
-import Navbar from '../components/Navbar'
 import {Grid} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
@@ -13,7 +12,7 @@ class UsersProfile extends React.Component{
 
     render(){
         return <div>
-            <Navbar/>
+            <br/>
             <Grid className='users-profile'>
                 <Grid.Row>
                     <Grid.Column>

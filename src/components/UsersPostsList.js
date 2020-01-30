@@ -47,7 +47,7 @@ class UsersPostsList extends React.Component{
     render(){
         const posts= this.props.posts.filter(post => post.user_id === this.props.user.id)
         return <div>
-            <h1>Users Posts List</h1>
+            <h1>My Posts</h1>
             {this.renderPosts(posts)}
         </div>
     }

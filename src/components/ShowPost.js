@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Grid, Image, Button} from 'semantic-ui-react'
-import Navbar from './Navbar'
 import MapContainer from './MapContainer'
 import {getPost, getKey, likePost} from '../actions/index'
 import {FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon,WhatsappShareButton, WhatsappIcon, EmailShareButton, EmailIcon} from 'react-share'
@@ -68,7 +67,7 @@ class ShowPost extends React.Component{
         }
         
         return <div>
-            <Navbar/>
+            <br/>
             <Grid container >
                 <Grid.Row>
                     <h2>{post.title}</h2>

@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from './Navbar'
 import { Input, Grid, Image, Radio,Dimmer, Loader, Label,Icon} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {setPost} from '../actions/index'
@@ -84,7 +83,7 @@ class PostsList extends React.Component{
         }
         
         else return<div>
-            <Navbar/>
+            <br/>
             <div className='sub-menu'>
                 <Input onChange={this.handleSearch}icon='search' placeholder='Search...' />
                 {!this.state.mapView ? <Radio onClick={this.handleSort} label='Sort By Price' style={{margin:15}} checked={this.state.sortByPrice}/> : null}

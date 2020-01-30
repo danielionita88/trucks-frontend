@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {signup} from '../actions/index'
 import { Button, Form } from 'semantic-ui-react'
-import Navbar from './Navbar'
 
 
 class Signup extends React.Component{
@@ -28,7 +27,6 @@ class Signup extends React.Component{
 
     render(){
         return <div >
-            <Navbar/>
             <div className='signup'>
                 <h2>Create User</h2>
                 <Form onSubmit={this.handleSubmit}>
