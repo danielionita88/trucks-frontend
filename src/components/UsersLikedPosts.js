@@ -18,8 +18,8 @@ class UsersLikedPosts extends React.Component{
     }
 
     renderPosts=()=>{
-        return this.props.likedPosts.map(post => <Segment className='profile-list' key={post.id}>
-            <Grid>
+        return this.props.likedPosts.map(post => <Segment className='liked-posts' key={post.id}>
+            <Grid >
                 <Grid.Row columns='3'>
                     <Grid.Column 
                         onClick={()=>this.handlePostClick(post)}

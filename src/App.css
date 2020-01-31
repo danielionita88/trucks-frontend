@@ -14,6 +14,12 @@
     top: 70px;
     cursor: pointer;
 }
+.liked-posts{
+    width: 700px;
+    cursor: pointer;
+    position:relative;
+    z-index: 2;
+}
 
 .signup{
     z-index: 2;
@@ -115,6 +121,8 @@ body .home-page{
 .profile-list{
     width: 700px;
     cursor: pointer;
+    position:relative;
+    z-index: 3;
 }
 .ui.active.transition.visible.dimmer{
     position: fixed;
